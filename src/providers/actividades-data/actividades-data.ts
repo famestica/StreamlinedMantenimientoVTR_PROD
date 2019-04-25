@@ -26,7 +26,7 @@ export class ActividadesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerListaSistemas?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListaSistemas?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -124,7 +124,7 @@ export class ActividadesDataProvider {
   public soapinvokeR5EventInterfacePpmUpdate(codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOt) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/crearActividadPpm?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/crearActividadPpm?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -193,7 +193,7 @@ export class ActividadesDataProvider {
   public soapinvokeR5EventInterfacePpmCreate(codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividadInc, equipo, tipoOt, descOt) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/crearActividadPpm?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/crearActividadPpm?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -268,7 +268,7 @@ export class ActividadesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerListaSistemas?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListaSistemas?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");

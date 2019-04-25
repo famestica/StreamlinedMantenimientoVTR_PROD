@@ -26,7 +26,7 @@ export class RotacionDataProvider {
   public soapinvokeR5IngresarRotacion(equipoAntiguo, equipoNuevo, codOt, estadoEquipo, rutTecnico, descripcion) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/ingresarRotacion?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarRotacion?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -94,7 +94,7 @@ export class RotacionDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerObjetoOriginal?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerObjetoOriginal?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -218,7 +218,7 @@ export class RotacionDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerObjetoNuevo?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerObjetoNuevo?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");

@@ -28,7 +28,7 @@ export class DetalleOtProgramadaDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerListaSistemas?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListaSistemas?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -129,7 +129,7 @@ export class DetalleOtProgramadaDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/listaValoresCierre?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/listaValoresCierre?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -232,7 +232,7 @@ export class DetalleOtProgramadaDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/listaValoresCierre?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/listaValoresCierre?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -331,7 +331,7 @@ export class DetalleOtProgramadaDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/listaValoresCierre?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/listaValoresCierre?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -425,7 +425,7 @@ export class DetalleOtProgramadaDataProvider {
   public soapinvokeR5countaddetails(codOt) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/contadorComentarios?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/contadorComentarios?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -498,7 +498,7 @@ export class DetalleOtProgramadaDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerAutorizacionEstado?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerAutorizacionEstado?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -596,7 +596,7 @@ export class DetalleOtProgramadaDataProvider {
   public soapinvokeR5CrearActividad(codOt, descOt, tipo, depto, codClase, falla, causa, accion) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/crearActividad?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/crearActividad?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");

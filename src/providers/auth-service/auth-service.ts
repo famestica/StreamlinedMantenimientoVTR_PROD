@@ -41,7 +41,7 @@ export class AuthService {
       } else {
         //Se realiza chequeo del servicio de acceso, si devuelve true, hay que asignar true a la variable access, de lo contrario, asignar false
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST', 'http://172.17.226.23:8000/loginUser?wsdl', true);
+        xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/loginUser?wsdl', true);
         xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
         xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
         xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");

@@ -28,7 +28,7 @@ export class InspeccionesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerInspeccionPpm?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerInspeccionPpm?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -256,7 +256,7 @@ export class InspeccionesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerInspeccionPmpe01?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerInspeccionPmpe01?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -437,7 +437,7 @@ export class InspeccionesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/ingresarInspeccion?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarInspeccion?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -508,7 +508,7 @@ export class InspeccionesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/ingresarInspeccion?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarInspeccion?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -577,7 +577,7 @@ export class InspeccionesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/ingresarInspeccion?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarInspeccion?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");

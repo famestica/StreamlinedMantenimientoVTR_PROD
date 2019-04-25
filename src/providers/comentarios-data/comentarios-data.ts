@@ -21,7 +21,7 @@ export class ComentariosDataProvider {
   public soapinvokeR5countaddetails(codOt) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/contadorComentarios?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/contadorComentarios?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -89,7 +89,7 @@ export class ComentariosDataProvider {
   public soapinvokeR5addetailsinterface(codOt, comentario, usuario, linea) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/ingresarComentario?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarComentario?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -167,7 +167,7 @@ export class ComentariosDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://172.17.226.23:8000/obtenerListadoComentarios?wsdl', true);
+      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListadoComentarios?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
