@@ -62,7 +62,6 @@ export class OtcrearactividadnuevaPage {
   }
 
   saveData() {
-    console.log(this.myForm.value);
   }
 
   ionViewDidLoad() {
@@ -295,7 +294,6 @@ export class OtcrearactividadnuevaPage {
         }
         self.checkActividadString = '-';
         self.numActividadInc = this.numActividad++;
-        console.log(self.numActividadInc);
         self.database.addCrearActividad(self.valorOT, self.estadoOt, self.notasVacio, self.userTecnico, self.tarea, self.checkActividadString, self.horasestimadas, self.numActividadInc, self.equipo, self.tipoOt, self.descOt).then(function (value) {
 
           self.navCtrl.pop();

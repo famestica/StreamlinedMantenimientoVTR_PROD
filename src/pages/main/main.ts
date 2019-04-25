@@ -455,7 +455,6 @@ export class MainPage {
                   self.dataService.soapinvokeR5countaddetails(item['numerost']).then(function (countComents) {
 
                     self.cargarGeolocalizacion().then(function (valueGeoLoc) {
-                      console.log('Resultado Geoloc: ' + valueGeoLoc);
                       self.dataService.soapinvokeR5addetailsinterface(item['numerost'], 'Actividad Iniciada. Fecha: ' + self.fechaGeoRef + ' ,GeoRef: ' + valueGeoLoc, self.auth.getUserInfo().name.toString(), countComents).then(function (valueR5addetailsinterface) {
                         self.dataService.soapinvokeR5actudfchar01Iniciar(item['numerost'], item['actividad']).then(function (valueR5actudfchar01Iniciar) {
                           self.navCtrl.push(OtdetallePage, {
@@ -581,7 +580,6 @@ export class MainPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
 
     var self = this;
     this.dataService.soapinvokeR5Personel(this.auth.getUserInfo().name.toString()).then(function (value) {

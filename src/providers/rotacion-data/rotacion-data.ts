@@ -57,17 +57,13 @@ export class RotacionDataProvider {
                   </soap:Body>
                </soap:Envelope>`;
 
-      console.log(sr);
-
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) {
             var xml = xmlhttp.responseXML;
-            console.log(xml);
             let result;
             result = xml.getElementsByTagName("res:mensaje")[0].childNodes[0].nodeValue;
-            console.log(result);
             resolve(result);
 
           }
@@ -145,7 +141,6 @@ export class RotacionDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codEquipo[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codEquipo[i].childNodes[0]) {
@@ -271,7 +266,6 @@ export class RotacionDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codTecnico[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codTecnico[i].childNodes[0]) {

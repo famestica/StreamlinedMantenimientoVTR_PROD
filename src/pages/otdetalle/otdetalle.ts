@@ -121,7 +121,6 @@ export class OtdetallePage {
         });
         alert.present();
 
-        console.log(valorInsercion);
       }, function (reason) {
         self.showError("Error al ejecutar servicio para actualizar OT");
 
@@ -339,7 +338,6 @@ export class OtdetallePage {
       this.myForm.get('activoafectado').setValue(this.scannedData.text);
 
     }, (err) => {
-      console.log('Error: ', err);
       this.scanData = err;
 
     })
@@ -347,7 +345,6 @@ export class OtdetallePage {
   }
 
   checkform() {
-    console.log(this.myForm.value);
   }
 
   showLoading() {

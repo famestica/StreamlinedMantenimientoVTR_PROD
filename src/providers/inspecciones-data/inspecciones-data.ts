@@ -110,7 +110,6 @@ export class InspeccionesDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codOT[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codOT[i].childNodes[0]) {
@@ -324,7 +323,6 @@ export class InspeccionesDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codOT[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codOT[i].childNodes[0]) {
@@ -473,7 +471,6 @@ export class InspeccionesDataProvider {
                     </soap:Body>
                  </soap:Envelope>`;
 
-      console.log(sr);
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {
@@ -612,7 +609,6 @@ export class InspeccionesDataProvider {
                       </ing:ingresarInspeccionRequest>
                     </soap:Body>
                  </soap:Envelope>`;
-      console.log(sr);
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {
@@ -622,7 +618,6 @@ export class InspeccionesDataProvider {
             let result;
 
             result = xml.getElementsByTagName("res:codigoError")[0].childNodes[0].nodeValue;
-            console.log(result)
             resolve(result);
 
           }

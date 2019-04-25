@@ -72,7 +72,6 @@ export class ActividadesDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codSistemas[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codSistemas[i].childNodes[0]) {
@@ -163,7 +162,6 @@ export class ActividadesDataProvider {
                   </soap:Body>
                </soap:Envelope>`;
 
-      console.log(sr);
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {
@@ -232,7 +230,6 @@ export class ActividadesDataProvider {
                   </soap:Body>
                </soap:Envelope>`;
 
-      console.log(sr);
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {

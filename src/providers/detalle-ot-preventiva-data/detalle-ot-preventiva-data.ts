@@ -72,7 +72,6 @@ export class DetalleOtPreventivaDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codSistemas[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codSistemas[i].childNodes[0]) {
@@ -240,7 +239,6 @@ export class DetalleOtPreventivaDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codSistemas[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codSistemas[i].childNodes[0]) {
@@ -342,7 +340,6 @@ export class DetalleOtPreventivaDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codEstado[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codEstado[i].childNodes[0]) {

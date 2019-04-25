@@ -219,7 +219,6 @@ export class ComentariosDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!linea[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (linea[i].childNodes[0]) {

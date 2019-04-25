@@ -41,11 +41,9 @@ export class OtinspeccionesPage {
 
   showPrompt(descripcion, objeto, item) {
     if (this.tipoTrabajo === 'PPM' && this.tipoOT === 'PMPE01') {
-      console.log('Entra al if PMPE01');
       this.showPromptPMPE01(descripcion, objeto, item);
     }
     else {
-      console.log('Entra al if PPM');
       this.showPromptPPM(descripcion, objeto, item);
     }
   }
@@ -78,7 +76,6 @@ export class OtinspeccionesPage {
           text: 'Cancelar',
           cssClass: 'cancel-button',
           handler: data => {
-            console.log('Cancel clicked');
           }
         },
         {
@@ -178,7 +175,6 @@ export class OtinspeccionesPage {
           text: 'Cancelar',
           cssClass: 'cancel-button',
           handler: data => {
-            console.log('Cancel clicked');
           }
         },
         {
@@ -187,7 +183,6 @@ export class OtinspeccionesPage {
           handler: data => {
 
             if (data.valorinspeccioncoti === '' && data.valorinspeccionreti != '') {
-              console.log('Entra a validación de campo RETI');
               this.validateNumberTypeReti = this.validateNumericType(Number(data.valorinspeccionreti));
               if (this.validateNumberTypeReti == false) {
                 prompt.setMessage("<font size=2>Valor RETI no es de tipo numérico</font>");
@@ -371,8 +366,6 @@ export class OtinspeccionesPage {
   ionViewWillEnter() {
     this.showLoading();
     var self = this;
-    console.log('tipoOT: ' + this.tipoOT);
-    console.log('tipoTrabajo: ' + this.tipoTrabajo);
     if (this.tipoTrabajo === 'PPM' && this.tipoOT === 'PMPE01') {
       self.dataService.soapinvokeR5ObtenerInspeccionesPMPE01(this.almacen).then(function (R5InspeccionesValue) {
         self.itemsInspecciones = R5InspeccionesValue;
@@ -446,11 +439,8 @@ export class OtinspeccionesPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
 
     var self = this;
-    console.log('tipoOT: ' + this.tipoOT);
-    console.log('tipoTrabajo: ' + this.tipoTrabajo);
     if (this.tipoTrabajo === 'PPM' && this.tipoOT === 'PMPE01') {
       self.dataService.soapinvokeR5ObtenerInspeccionesPMPE01(this.almacen).then(function (R5InspeccionesValue) {
         self.itemsInspecciones = R5InspeccionesValue;

@@ -74,7 +74,6 @@ export class OtdetallepreventivaPage {
   }
 
   saveData() {
-    console.log(this.myForm.value);
   }
 
 
@@ -135,7 +134,6 @@ export class OtdetallepreventivaPage {
 
 
   private createMyForm() {
-    console.log();
     return this.formBuilder.group({
       numerost: [this.items.numerost],
       idst: [this.items.idst],

@@ -50,7 +50,6 @@ export class OtcrearmaterialesPage {
   }
 
   saveData() {
-    console.log(this.myForm.value);
   }
 
   ionViewDidLoad() {

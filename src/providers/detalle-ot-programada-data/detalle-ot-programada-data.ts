@@ -74,7 +74,6 @@ export class DetalleOtProgramadaDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codSistemas[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codSistemas[i].childNodes[0]) {
@@ -158,8 +157,6 @@ export class DetalleOtProgramadaDataProvider {
                   </soap:Body>
                </soap:Envelope>`;
 
-      console.log(sr);
-
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {
@@ -180,7 +177,6 @@ export class DetalleOtProgramadaDataProvider {
               for (i = 0; i < responseLenght; i++) {
 
                 if (!valorLista[i].childNodes[0]) {
-                  console.log('No se inserta nodo por estar vacio');
                 }
                 else {
                   if (valorLista[i].childNodes[0]) {
@@ -204,7 +200,6 @@ export class DetalleOtProgramadaDataProvider {
               resolve(self.etapaItems);
             }
             else {
-              console.log('No se inserta nodo por estar vacio');
 
             }
 
@@ -280,7 +275,6 @@ export class DetalleOtProgramadaDataProvider {
               for (i = 0; i < responseLenght; i++) {
 
                 if (!valorLista[i].childNodes[0]) {
-                  console.log('No se inserta nodo por estar vacio');
                 }
                 else {
                   if (valorLista[i].childNodes[0]) {
@@ -303,7 +297,6 @@ export class DetalleOtProgramadaDataProvider {
               resolve(self.accionItems);
             }
             else {
-              console.log('No se inserta nodo por estar vacio');
 
             }
 
@@ -379,7 +372,6 @@ export class DetalleOtProgramadaDataProvider {
               for (i = 0; i < responseLenght; i++) {
 
                 if (!valorLista[i].childNodes[0]) {
-                  console.log('No se inserta nodo por estar vacio');
                 }
                 else {
                   if (valorLista[i].childNodes[0]) {
@@ -402,7 +394,6 @@ export class DetalleOtProgramadaDataProvider {
               resolve(self.causaItems);
             }
             else {
-              console.log('No se inserta nodo por estar vacio');
 
             }
           }
@@ -545,7 +536,6 @@ export class DetalleOtProgramadaDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codEstado[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codEstado[i].childNodes[0]) {

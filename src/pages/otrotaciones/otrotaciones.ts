@@ -76,7 +76,6 @@ export class OtrotacionesPage {
   }
 
   saveData() {
-    console.log("Pasa por Save");
   }
 
   setFilteredItemsEstadosEquipo() {

@@ -63,7 +63,6 @@ export class OtcrearactividadesPage {
   }
 
   saveData() {
-    console.log(this.myForm.value);
   }
 
   ionViewDidLoad() {

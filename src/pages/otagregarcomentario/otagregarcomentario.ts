@@ -63,7 +63,6 @@ export class OtagregarcomentarioPage {
   }
 
   saveData() {
-    console.log(this.myForm.value);
   }
 
   private createMyForm() {
@@ -150,7 +149,6 @@ export class OtagregarcomentarioPage {
 
   async initSpeech() {
     const isAvailable = await this.speech.isRecognitionAvailable();
-    console.log(isAvailable);
     if (isAvailable == true) {
       const hasPermissions = await this.speech.hasPermission();
       if (hasPermissions == false) {

@@ -92,7 +92,6 @@ export class MainDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codTecnico[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codTecnico[i].childNodes[0]) {
@@ -549,7 +548,6 @@ export class MainDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codOT[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codOT[i].childNodes[0]) {

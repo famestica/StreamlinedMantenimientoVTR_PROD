@@ -81,7 +81,6 @@ export class MaterialesDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codigoPieza[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codigoPieza[i].childNodes[0]) {

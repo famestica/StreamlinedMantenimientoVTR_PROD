@@ -63,7 +63,6 @@ export class LoginPage {
         });
 
     }, function (reason) {
-      console.log(JSON.stringify(reason, Object.getOwnPropertyNames(reason)));
       self.showError("Credenciales incorrectas");
 
     });
