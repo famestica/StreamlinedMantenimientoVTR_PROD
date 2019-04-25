@@ -1,0 +1,78 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-googleplus": {
+      "PLAY_SERVICES_VERSION": "11.8.0",
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-ms-adal": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-speechrecognition": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "uk.co.workingedge.cordova.plugin.sqliteporter": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    }
+  }
+}

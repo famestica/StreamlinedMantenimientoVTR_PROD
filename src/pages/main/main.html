@@ -1,0 +1,103 @@
+<!--
+  Generated template for the MainPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="liberty" align-title="left">
+    <ion-title>
+      <font size="3">Órdenes de Trabajo - {{itemOtCount}}</font>
+    </ion-title>
+    <ion-buttons right>
+      <button ion-button outline class="logout" (click)="logout()">Salir</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Actualizar" refreshingSpinner="circles"
+      refreshingText="Actualizando..."></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-row>
+      <button ion-item class="itemLista"
+        [color]="item.prioridad == 'baja'? 'green' : item.prioridad == 'media'? 'medium': item.prioridad == 'alta'? 'redalert' : 'redalert'"
+        *ngFor="let item of items" (click)="goToOtDetalle(item)">
+        <div class="CustomColour">
+          <ion-row>
+            <ion-col col-11 text-wrap>
+              <ion-row>
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Nº OT:</b> {{item.numerost}}</font>
+                  </h3>
+                </ion-col>
+                <ion-col col-4 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Actividad:</b> {{item.actividad}}</font>
+                  </h3>
+                </ion-col>
+                <ion-col col-3 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Estado de Avance:</b> {{item.avance}}</font>
+                  </h3>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ionrowclass">
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Equipo:</b> {{item.nombreactivo}}</font>
+                  </h3>
+                </ion-col>
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Estado:</b> {{item.estado}}</font>
+                  </h3>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ionrowclass">
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Tipo:</b> {{item.tipoot}}</font>
+                  </h3>
+                </ion-col>
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Fecha Crea:</b> {{item.fecha}}</font>
+                  </h3>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ionrowclass">
+                <ion-col col-12 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Descripción OT:</b> {{item.descripcion}}</font>
+                  </h3>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ionrowclass">
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Tarea:</b> {{item.tarea}}</font>
+                  </h3>
+                </ion-col>
+                <ion-col col-5 text-wrap>
+                  <h3>
+                    <font size="2" color="black"><b>Des. Tarea:</b> {{item.desctarea}}</font>
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 text-wrap
+              [class]="item.flagActIniciada == 'Pausada'? 'colorPausa' : item.flagActIniciada == 'Iniciada'? 'colorReanudar' : 'colorReanudar'">
+            </ion-col>
+          </ion-row>
+        </div>
+      </button>
+    </ion-row>
+  </ion-list>
+</ion-content>

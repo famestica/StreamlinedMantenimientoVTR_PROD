@@ -1,0 +1,249 @@
+.md{
+page-main {
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        }
+
+        .colorPausa{
+
+          background-color: #fcba25;
+          max-width: 20%;
+        }
+
+        .colorReanudar{
+          background-color: #29f700;
+        }
+      .itemLista{
+        .item-inner {
+          padding-right: 0px!important;
+          margin-right: -20px;
+          margin-left:-10px;
+       }
+      }
+        
+
+        .background-with-false {
+            background-color : rgb(152, 223, 152)
+            
+         }
+
+         .item{
+          margin:3px auto;
+        }
+
+         .green{
+            ion-item.item.item-block.item-md.item-label-floating.item-input.ng-pristine.ng-invalid.ng-touched{
+             background:rgb(122, 189, 122);
+            }
+          }
+          
+          .red {
+            ion-item.item.item-block.item-md.item-label-floating.item-input.ng-pristine.ng-invalid.ng-touched{
+              background:rgb(241, 152, 152);
+            }
+          }
+
+          .logout{
+
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: 20px;
+            text-align: center;
+            border-radius: 15px !important;
+            
+          }
+
+          
+
+          .busquedaestado{
+            border: 2px solid #222;
+            margin:5px auto;
+            margin-right: 183px;
+            margin-left: 3px;
+            border-radius: 10px !important;
+            max-height: 100%; 
+            font-size: 13px;
+            height: 45px;
+            width: 250px;
+            text-align: center;
+        }
+
+        .busquedafecha{
+          border: 2px solid #222;
+          margin:5px auto;
+          border-radius: 10px !important;
+          max-height: 100%; 
+          font-size: 13px;
+          height: 45px;
+          width: 140px;
+          text-align: center;
+      }
+
+        .busquedaestadolabel{
+          font-size: 13px;
+          color:#222;
+      }
+
+      .item-toggle ion-label {
+        color: #222;
+      }
+
+      .ionrowclass{
+        margin-top:-9px;
+      }
+
+
+
+}
+div.CustomColour * {
+    color: #222 !important;
+ }
+
+ .buttonCss {
+  text-align:center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  button.alert-button.no-button{
+    color: rgb(255, 255, 255);
+    border: 2px solid #222;
+    background-color: rgb(0, 0, 0);
+
+    border-radius: 15px !important;
+    text-align:center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+  }
+
+  button.alert-button.si-button{
+    color: rgb(255, 255, 255);
+    border: 2px solid #222;
+    border-radius: 15px !important;
+    background-color: rgb(0, 0, 0);
+
+    text-align:center;
+    justify-content: center !important;
+    align-items: center !important;
+
+  }
+}
+
+
+}
+
+.ios{
+  page-main {
+      .spinner-container {
+          width: 100%;
+          text-align: center;
+          padding: 10px;
+          }
+  
+          .background-with-false {
+              background-color : rgb(152, 223, 152)
+              
+           }
+  
+           .green{
+              ion-item.item.item-block.item-md.item-label-floating.item-input.ng-pristine.ng-invalid.ng-touched{
+               background:rgb(122, 189, 122);
+              }
+            }
+            
+            .red {
+              ion-item.item.item-block.item-md.item-label-floating.item-input.ng-pristine.ng-invalid.ng-touched{
+                background:rgb(241, 152, 152);
+              }
+            }
+  
+            .logout{
+  
+              padding-right: 15px;
+              padding-left: 15px;
+              margin-right: 20px;
+              text-align: center;
+              border-radius: 15px !important;
+              color:white;
+              border-color: white;
+              
+            }
+  
+            .busquedaestado{
+              border: 2px solid #222;
+              margin:5px auto;
+              margin-right: 183px;
+              margin-left: 3px;
+              border-radius: 10px !important;
+              max-height: 100%; 
+              font-size: 13px;
+              height: 45px;
+              width: 250px;
+              text-align: center;
+          }
+  
+          .busquedafecha{
+            border: 2px solid #222;
+            margin:5px auto;
+            border-radius: 10px !important;
+            max-height: 100%; 
+            font-size: 13px;
+            height: 45px;
+            width: 140px;
+            text-align: center;
+        }
+  
+          .busquedaestadolabel{
+            font-size: 13px;
+            color:#222;
+        }
+  
+        .item-toggle ion-label {
+          color: #222;
+        }
+  
+        .ionrowclass{
+          margin-top:-9px;
+        }
+  
+  
+  
+  }
+  div.CustomColour * {
+      color: #222 !important;
+   }
+  
+   .buttonCss {
+    text-align:center;
+    justify-content: center !important;
+    align-items: center !important;
+  
+    button.alert-button.no-button{
+      color: rgb(255, 255, 255);
+      border: 2px solid #222;
+      border-radius: 15px !important;
+      background-color: rgb(0, 0, 0);
+  
+      text-align:center;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+  
+    button.alert-button.si-button{
+      color: rgb(255, 255, 255);
+      border: 2px solid #222;
+      border-radius: 15px !important;
+      background-color: rgb(0, 0, 0);
+  
+      text-align:center;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+  }
+  
+  
+  }

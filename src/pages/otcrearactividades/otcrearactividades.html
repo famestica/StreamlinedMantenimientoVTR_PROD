@@ -1,0 +1,128 @@
+<!--
+  Generated template for the OtcrearactividadesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="liberty">
+    <ion-title text-right>Actividades OT {{valorOT}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="myForm" (ngSubmit)="saveData()">
+    <ion-item no-lines>
+      <ion-label color="dark" stacked>Actividad:<span danger>*</span></ion-label>
+      <ion-input text-center formControlName="actividad"></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label color="dark" stacked>Horas Estimadas:<span danger>*</span></ion-label>
+      <ion-input text-center (keyup)="keyUpChecker($event)" formControlName="horasestimadas"
+        [(ngModel)]="horasestimadas"></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row class="rowcorrectivo">
+        <ion-col col-5>
+          <ion-item no-lines>
+            <ion-label color="dark" stacked>Tareas:<span danger>*</span></ion-label>
+            <ion-select text-wrap interface="popup" formControlName="tarea" [(ngModel)]="tarea" (ionChange)="llenadoCampos()"
+              class="busquedatarea">
+              <ion-option text-wrap *ngFor="let tareaList of itemsTareas" value="{{tareaList.tareaItem}}">{{tareaList.comptarea}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-7>
+          <ion-item no-lines>
+            <ion-label color="dark" stacked>Desc. Tarea:</ion-label>
+            <ion-input text-center formControlName="desctarea"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rowcorrectivo">
+        <ion-col col-6>
+          <ion-item no-lines>
+            <ion-label color="dark" stacked>Técnico planificado:<span danger>*</span></ion-label>
+            <ion-input text-center formControlName="tecnicoplanificado"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item no-lines>
+            <ion-label color="dark" stacked>Equipo:<span danger>*</span></ion-label>
+            <ion-input text-center formControlName="equipo" class="inputcorrectivo"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rowcorrectivo">
+        <ion-col col-12>
+          <ion-item no-lines>
+            <ion-label color="dark" stacked>Motivo Reparación:<span danger>*</span></ion-label>
+            <ion-select text-wrap interface="popup" formControlName="motivorep" [(ngModel)]="motivorep"
+              class="busquedamotivorep">
+              <ion-option text-wrap *ngFor="let motivoRepList of itemsMotivoRep" value="{{motivoRepList.motivoRep}}">
+                {{motivoRepList.compmotivo}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item no-lines>
+            <ion-checkbox item-end formControlName="checkactividad" [(ngModel)]="checkactividad"></ion-checkbox>
+            <ion-label color="dark" class="checkboxclass" stacked>Acti. Completada</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rowcorrectivo">
+        <ion-col col-12>
+          <ion-item no-lines>
+            <ion-label color="dark" stacked>Notas:</ion-label>
+            <ion-textarea formControlName="notas" [(ngModel)]="notas"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row class="rowcorrectivo">
+        <ion-col col-5>
+          <div>
+            <button class="botonguardar" ion-button color="dark" (click)="enviarActividad()" [disabled]="!myForm.valid"
+              rounded>
+              <font size="2">Enviar</font>
+            </button>
+          </div>
+        </ion-col>
+        <ion-col col-1>
+
+        </ion-col>
+        <ion-col col-5>
+          <div>
+            <button class="botononedrive" type="button" ion-button color="dark" rounded (click)="getPicture()">
+              <font size="2">Fotos</font>
+            </button>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rowcorrectivoboton">
+        <ion-col col-2>
+
+        </ion-col>
+        <ion-col col-6>
+          <div>
+            <button class="botonnuevact" type="button" ion-button color="dark" (click)="goToOtActividadesNuevas()"
+              rounded>
+              <font size="2">Agregar Nueva Actividad</font>
+            </button>
+          </div>
+        </ion-col>
+        <ion-col col-2>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

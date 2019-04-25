@@ -1,0 +1,50 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-googleplus": {
+      "REVERSED_CLIENT_ID": "282862038118-31ug6cspalr99fafdlj6gapcetjj27jh.apps.googleusercontent.com",
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-ms-adal": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "streamlined.vtr.mantenimiento"
+    }
+  }
+}

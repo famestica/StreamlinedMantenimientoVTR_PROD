@@ -1,0 +1,60 @@
+<!--
+  Generated template for the OtagregarcomentarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="liberty">
+    <ion-title text-right text-wrap>
+      <font size="2">Comentarios OT {{valorOT}}&emsp;&emsp;&emsp;Actividad {{act}}</font>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <form [formGroup]="myForm" (ngSubmit)="saveData()">
+    <ion-row>
+      <ion-col col-12>
+        <ion-item no-lines>
+          <ion-label color="dark" stacked>Comentario:</ion-label>
+          <ion-textarea formControlName="comentario" [(ngModel)]="comentario" (keypress)="changed()"
+            (keyup)="changed()"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item no-lines>
+          <ion-label color="dark" stacked>Quedan {{leftCharacters}} de 200 caracteres</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+      </ion-col>
+      <ion-col col-4>
+        <button item-right class="botonguardar" type="button" ion-button [color]="isRecording ? 'danger' : 'dark'"
+          *ngIf='(isRecording == false)' (click)="initSpeech()" rounded>
+          <ion-icon ios="ios-mic-outline" md="ios-mic-outline"></ion-icon>
+        </button>
+        <button item-right class="botonguardar" type="button" ion-button [color]="isRecording ? 'danger' : 'dark'"
+          *ngIf='(isRecording == true && isIos())' (click)="stopListening()" rounded>
+          <ion-icon ios="ios-mic-outline" md="ios-mic-outline"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+      </ion-col>
+      <ion-col col-4>
+        <button class="botonguardar" ion-button color="dark" (click)="enviarComentario()" rounded>Enviar</button>
+      </ion-col>
+      <ion-col col-4>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

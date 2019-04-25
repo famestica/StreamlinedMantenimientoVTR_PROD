@@ -1,0 +1,77 @@
+<!--
+  Generated template for the OtinspeccionesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="liberty">
+    <ion-title text-right>
+      <font size="3">Inspecciones Tipo OT: {{tipoOT}}&nbsp;&nbsp;&nbsp;OT {{almacen}}</font>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Actualizar" refreshingSpinner="circles"
+      refreshingText="Actualizando..."></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-row>
+      <button ion-item [color]="item.valorinspeccion == ''? 'redalert' : 'green'"
+        *ngFor="let item of itemsInspecciones ; let even = even"
+        (click)="showPrompt(item.descripcion,item.objeto, item,i)">
+        <div class="CustomColour">
+          <ion-row>
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Objeto:</b>{{item.objeto}}</font>
+              </h3>
+            </ion-col>
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Categoría:</b>{{item.categoria}}</font>
+              </h3>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ionrowclass">
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Descripción Obj:</b>{{item.descripcion}}</font>
+              </h3>
+            </ion-col>
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Desc. Aspecto:</b>{{item.aspecto}}</font>
+              </h3>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ionrowclass">
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Método:</b>{{item.metodo}}</font>
+              </h3>
+            </ion-col>
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Dirección:</b>{{item.direccion}}</font>
+              </h3>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ionrowclass">
+            <ion-col col-6 text-wrap>
+              <h3>
+                <font size="2" color="black"><b>Valor Ingresado:</b>{{item.valorinspeccion}}</font>
+              </h3>
+            </ion-col>
+          </ion-row>
+        </div>
+      </button>
+    </ion-row>
+  </ion-list>
+
+</ion-content>

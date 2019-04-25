@@ -1,0 +1,112 @@
+page-otrotaciones {
+
+    ion-input{
+        border: 2px solid #222;
+        margin:5px auto;
+        border-radius: 10px !important;
+        max-width: 87%; 
+        max-height: 60%; 
+        font-size: 13px;
+    }
+
+    .no-scroll .scroll-content {
+        overflow: hidden;
+    }
+
+
+    ion-item .item-inner{
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: none;
+        box-shadow: none
+       }
+      
+
+       .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: none;
+        box-shadow: none
+    }
+
+    .alert-ios .alert-md .alert-radio-label {
+        white-space: normal !important;
+    }
+
+    .alert-radio-label {
+        white-space: normal!important;
+    }
+    
+    .alert-tappable .alert-radio .disable-hover .alert-radio-button .alert-radio-button-md .alert-radio-button-default .alert-radio-button-default-md{
+    
+        white-space: normal !important;
+    }
+
+    .botonguardar{
+        width: 60%;
+        margin-left: 86px;
+        text-align: center;
+        margin-top: 60px;
+        border-radius: 15px !important;
+        height: 50px;
+
+    }
+
+    .botonguardarotro{
+        width: 60%;
+        margin-left: 86px;
+        text-align: center;
+        border-radius: 15px !important;
+        height: 50px;
+        margin-top: -25px;
+
+    }
+
+    .busquedaestado{
+        border: 2px solid #222;
+        margin:3px auto;
+        width: 250px;
+        border-radius: 10px !important;
+        font-size: 13px;
+        height: 35px;
+        text-align: center;
+    }
+
+    .equipo-nuevo{
+        text-align: center;
+    }
+
+    .equipo-antiguo{
+        text-align: center;
+        margin-top: 90px;
+    }
+
+}
+
+.buttonCss {
+    text-align:center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  
+    button.alert-button.ok-button{
+        color: rgb(255, 255, 255);
+        border: 2px solid #222;
+        border-radius: 15px !important;
+        background-color: rgb(0, 0, 0);
+    
+        text-align:center;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+  }
+
+  .alert-ios .alert-md .alert-radio-label {
+    white-space: normal !important;
+}
+
+.alert-tappable .alert-radio .disable-hover .alert-radio-button .alert-radio-button-md .alert-radio-button-default .alert-radio-button-default-md{
+
+    white-space: normal !important;
+}
+.alert-radio-label {
+    white-space: normal!important;
+}

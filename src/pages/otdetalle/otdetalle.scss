@@ -1,0 +1,239 @@
+.md{
+page-otdetalle {
+
+    ion-input{
+        border: 2px solid #222;
+        margin:5px auto;
+        border-radius: 10px !important;
+        max-width: 87%; 
+        max-height: 60%; 
+        font-size: 13px;
+    }
+
+
+    ion-item .item-inner{
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: none;
+        box-shadow: none
+       }
+      
+
+       .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: none;
+        box-shadow: none
+    }
+
+    .gridcorrectivo{
+        border: 2px solid #222;
+        margin:5px auto;
+        border-radius: 10px !important;
+        max-width: 87%; 
+        max-height: 60%; 
+        font-size: 13px;
+    }
+    
+    .inputcorrectivo{
+        border: 2px solid #222;
+        margin:5px auto;
+        border-radius: 10px !important;
+        max-width: 87%; 
+        max-height: 60%; 
+        font-size: 13px;
+
+    }
+
+    .inputcorrectivoafect{
+        border: 2px solid #222;
+        margin:5px auto;
+        border-radius: 10px !important;
+        max-width: 87%; 
+        max-height: 60%; 
+        font-size: 13px;
+        margin-left: 21px;
+
+    }
+
+    .botonlectorcodigo{
+        margin-top:13px;
+        border-radius: 15px !important;
+    }
+
+    .rowcorrectivo{
+        margin-top:-15px;
+
+    }
+
+    .rowcorrectivobotonsup{
+        margin-top:-15px;
+
+    }
+
+    .rowcorrectivoboton{
+        margin-top:-30px;
+
+    }
+
+    .badge{
+        border-radius: 100%;
+            margin-right: 1px;
+            margin-left: 1px;
+            padding-right: 18px;
+        
+    }
+    .textbadge{
+        font-size: 2px;
+    }
+
+    .botonguardar{
+        width: 60%;
+        margin-left: 110px;
+        border-radius: 15px !important;
+    }
+    .radius{
+        border-radius: 15px !important;
+    }
+
+    .radiusbottom{
+        border-radius: 15px !important;
+        height: 32px;
+    }
+
+    .busquedaequipo{
+        border: 2px solid #222;
+        margin:3px auto;
+        width: 285px;
+        border-radius: 10px !important;
+        font-size: 13px;
+        height: 35px;
+        text-align: center;
+    }
+
+    .busquedasistema{
+        border: 2px solid #222;
+        margin:3px auto;
+        width: 285px;
+        border-radius: 10px !important;
+        font-size: 13px;
+        height: 35px;
+        text-align: center;
+    }
+
+    .busquedaestado{
+        border: 2px solid #222;
+        margin:3px auto;
+        width: 250px;
+        border-radius: 10px !important;
+        font-size: 13px;
+        height: 35px;
+        text-align: center;
+    }
+
+    
+
+}
+
+}
+
+.ios{
+
+    page-otdetalle {
+
+        ion-input{
+            border: 2px solid #222;
+            margin:5px auto;
+            border-radius: 10px !important;
+            max-width: 87%; 
+            max-height: 60%; 
+            font-size: 13px;
+        }
+    
+    
+        ion-item .item-inner{
+            border-bottom-color: #dedede;
+            -webkit-box-shadow: none;
+            box-shadow: none
+           }
+          
+    
+           .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+            border-bottom-color: #dedede;
+            -webkit-box-shadow: none;
+            box-shadow: none
+        }
+    
+        .gridcorrectivo{
+            border: 2px solid #222;
+            margin:5px auto;
+            border-radius: 10px !important;
+            max-width: 87%; 
+            max-height: 60%; 
+            font-size: 13px;
+        }
+        
+        .inputcorrectivo{
+            border: 2px solid #222;
+            margin:5px auto;
+            border-radius: 10px !important;
+            max-width: 87%; 
+            max-height: 60%; 
+            font-size: 13px;
+    
+        }
+    
+        .inputcorrectivoafect{
+            border: 2px solid #222;
+            margin:5px auto;
+            border-radius: 10px !important;
+            max-width: 87%; 
+            max-height: 60%; 
+            font-size: 13px;
+            margin-left: 21px;
+    
+        }
+    
+        .botonlectorcodigo{
+            margin-top:13px;
+            border-radius: 15px !important;
+        }
+    
+        .rowcorrectivo{
+            margin-top:-15px;
+    
+        }
+
+        .rowcorrectivobotonsup{
+            margin-top:-15px;
+            height: 60%;
+    
+        }
+    
+        .rowcorrectivoboton{
+            margin-top:-30px;
+    
+        }
+    
+        .badge{
+            border-radius: 100%;
+            margin-right: 1px;
+            margin-left: 1px;
+            padding-right: 18px;
+            
+        }
+    
+        .botonguardar{
+            width: 60%;
+            margin-left: 110px;
+            border-radius: 15px !important;
+        }
+        .radius{
+            border-radius: 15px !important;
+        }
+    
+        .radiusbottom{
+            border-radius: 15px !important;
+        }
+    
+    }
+
+}
