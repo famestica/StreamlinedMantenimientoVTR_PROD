@@ -215,7 +215,7 @@ export class ActividadesDataProvider {
                     <cre:codigoSistemaSatelite>SEAM</cre:codigoSistemaSatelite>
                     <cre:codigoOt>` + codOt + `</cre:codigoOt>
                     <cre:descripcionOt>` + descOt + `</cre:descripcionOt>
-                    <cre:tipoTransaccion>A</cre:tipoTransaccion>
+                    <cre:tipoTransaccion>U</cre:tipoTransaccion>
                     <cre:tipo>` + tipoOt + `</cre:tipo>
                     <cre:centroCosto>213</cre:centroCosto>
                     <cre:equipo>` + equipo + `</cre:equipo>
