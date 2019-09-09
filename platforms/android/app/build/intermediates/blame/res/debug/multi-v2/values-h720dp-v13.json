@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "/Users/devuser/IonicProjects/StreamlinedMantenimientoVTR_PROD/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/devuser/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5661cc46973fa7215b4d5655e690df8a/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/devuser/IonicProjects/StreamlinedMantenimientoVTR/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {

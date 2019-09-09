@@ -25,10 +25,12 @@ export class MainDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerDescTecnico?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerDescTecnico?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/obtenerDescTecnico/LOGEMPObtenerDescTecnicoPortType/LOGEMPObtenerDescTecnicoOperationRequest");
 
@@ -196,7 +198,7 @@ export class MainDataProvider {
   public soapinvokeR5actudfchar01Pausar(codOt, codAct) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/pausarOT?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/pausarOT?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -254,7 +256,7 @@ export class MainDataProvider {
   public soapinvokeR5countaddetails(codOt) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/contadorComentarios?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/contadorComentarios?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -322,7 +324,7 @@ export class MainDataProvider {
   public soapinvokeR5actudfchar01Iniciar(codOt, codAct) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/pausarOT?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/pausarOT?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -381,7 +383,7 @@ export class MainDataProvider {
   public soapinvokeR5addetailsinterface(codOt, comentario, usuario, linea) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarComentario?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/ingresarComentario?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -459,7 +461,7 @@ export class MainDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListadoActividades?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerListadoActividades?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -508,6 +510,7 @@ export class MainDataProvider {
             let direccionEquipoOt;
             let codOTArr;
             let flagActIniciada;
+            let descActividad;
             let prioridadAct;
             let codEquipoArr;
             let codTipoArr;
@@ -523,6 +526,7 @@ export class MainDataProvider {
             let tipoOtArr;
             let direccionEquipoOtArr;
             let flagActIniciadaArr;
+            let descActividadArr;
             let prioridadArr;
             var i = 0;
             codOT = xml.getElementsByTagName("obt:codigoOT");
@@ -533,6 +537,7 @@ export class MainDataProvider {
             flagCompletado = xml.getElementsByTagName("obt:flagCompletado");
             codEstadoOt = xml.getElementsByTagName("obt:codigoEstadoOt");
             codAct = xml.getElementsByTagName("obt:codigoActividad");
+            descActividad = xml.getElementsByTagName("obt:descripcionActividad");
             dateOt = xml.getElementsByTagName("obt:fechaOt");
             descTarea = xml.getElementsByTagName("obt:descripcionTarea");
             tipoOt = xml.getElementsByTagName("obt:tipoOt");
@@ -612,6 +617,13 @@ export class MainDataProvider {
                   codActArr = '';
                 }
 
+                if (descActividad[i].childNodes[0]) { 
+                  descActividadArr = descActividad[i].childNodes[0].nodeValue;
+                }
+                else {
+                  descActividadArr = '';
+                }
+
                 if (dateOt[i].childNodes[0]) {
                   dateOtArr = dateOt[i].childNodes[0].nodeValue;
                 }
@@ -681,10 +693,11 @@ export class MainDataProvider {
                   descripcion: descOtArr,
                   estado: codEstadoOtArr,
                   tarea: codTareaArr,
-                  prioridad: 'baja',
+                  prioridad: prioridadArr,
                   fecha: dateOtArr,
                   tipoot: codTipoArr,
                   tipootdb: tipoOtArr,
+                  descactividad: descActividadArr,
                   actividad: codActArr,
                   desctarea: descTareaArr,
                   avance: flagCompletadoArr,

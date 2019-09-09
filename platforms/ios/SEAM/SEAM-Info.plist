@@ -51,11 +51,18 @@
     <dict>
       <key>NSExceptionDomains</key>
       <dict>
+        <key>localhost</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
         <key>192.168.0.18</key>
         <dict>
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
           <true/>
         </dict>
+        <key>accounts.google.com</key>
+        <dict/>
       </dict>
       <key>NSAllowsArbitraryLoads</key>
       <true/>

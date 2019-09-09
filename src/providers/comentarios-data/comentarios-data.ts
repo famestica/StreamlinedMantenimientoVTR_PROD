@@ -21,10 +21,12 @@ export class ComentariosDataProvider {
   public soapinvokeR5countaddetails(codOt) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/contadorComentarios?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/contadorComentarios?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/contadorComentarios/LOGEMPContadorComentariosPortType/LOGEMPContadorComentariosOperationRequest");
 
@@ -89,10 +91,12 @@ export class ComentariosDataProvider {
   public soapinvokeR5addetailsinterface(codOt, comentario, usuario, linea) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarComentario?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/ingresarComentario?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/STLN/EMP/ingresarComentario/STLNEMPIngresarComentarioPortType/STLNEMPIngresarComentarioOperationRequest");
 
@@ -167,10 +171,12 @@ export class ComentariosDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListadoComentarios?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerListadoComentarios?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/obtenerListadoComentarios/LOGEMPObtenerListadoComentariosPortType/LOGEMPObtenerListadoComentariosOperationRequest");
 

@@ -116,4 +116,5 @@
     </plugin>
     <plugin name="com-badrit-base64" spec="0.2.0" />
     <engine name="android" spec="7.1.4" />
+    <allow-navigation href="http://192.168.0.17:8100" />
 </widget>

@@ -12,6 +12,8 @@ $font-path: "../assets/fonts";
 $app-direction: ltr;
 
 
+
+
 @import "ionic.globals";
 
 
@@ -92,3 +94,21 @@ $alert-md-message-text-color:red;
 
 @import "roboto";
 @import "noto-sans";
+
+.alert-tappable.alert-radio {
+  height: auto;
+  contain: content;
+}
+
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+  white-space: normal;
+}
+
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+  white-space: normal !important;
+}
+
+.sc-ion-label-md-h{
+  white-space: normal !important;
+}

@@ -67,18 +67,18 @@ export class DatabaseProvider {
     });
   }
 
-  addActualizarActividad(codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOT) {
-    let data = [codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOT]
-    return this.database.executeSql("INSERT INTO actualizarActividad (codOt,estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOT) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)", data).then(data => {
+  addActualizarActividad(codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOT, motivorep) {
+    let data = [codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOT, motivorep]
+    return this.database.executeSql("INSERT INTO actualizarActividad (codOt,estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOT, motivorep) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)", data).then(data => {
       return data;
     }, err => {
       return err;
     });
   }
 
-  addCrearActividad(codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividad, equipo, tipoOt, descOt) {
-    let data = [codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividad, equipo, tipoOt, descOt]
-    return this.database.executeSql("INSERT INTO crearActividad (codOt,estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividad, equipo, tipoOt, descOt) VALUES (?, ?, ?,?,?,?,?,?,?,?,?)", data).then(data => {
+  addCrearActividad(codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividad, equipo, tipoOt, descOt, motivorep) {
+    let data = [codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividad, equipo, tipoOt, descOt, motivorep]
+    return this.database.executeSql("INSERT INTO crearActividad (codOt,estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividad, equipo, tipoOt, descOt, motivorep) VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?)", data).then(data => {
       return data;
     }, err => {
       return err;
@@ -130,9 +130,9 @@ export class DatabaseProvider {
     });
   }
 
-  addInsertarMateriales(tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad) {
-    let data = [tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad]
-    return this.database.executeSql("INSERT INTO materiales (tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad) VALUES (?, ?, ?, ?, ?, ?, ?)", data).then(data => {
+  addInsertarMateriales(tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad, estadoEquipo) {
+    let data = [tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad, estadoEquipo]
+    return this.database.executeSql("INSERT INTO materiales (tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad, estadoEquipo) VALUES (?, ?, ?, ?, ?, ?, ?,?)", data).then(data => {
       return data;
     }, err => {
       return err;
@@ -265,7 +265,7 @@ export class DatabaseProvider {
       let materiales = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          materiales.push({ tipoTrx: data.rows.item(i).tipoTrx, almacen: data.rows.item(i).almacen, codOt: data.rows.item(i).codOt, codAct: data.rows.item(i).codAct, codPieza: data.rows.item(i).codPieza, rutTecnico: data.rows.item(i).rutTecnico, cantidad: data.rows.item(i).cantidad });
+          materiales.push({ tipoTrx: data.rows.item(i).tipoTrx, almacen: data.rows.item(i).almacen, codOt: data.rows.item(i).codOt, codAct: data.rows.item(i).codAct, codPieza: data.rows.item(i).codPieza, rutTecnico: data.rows.item(i).rutTecnico, cantidad: data.rows.item(i).cantidad, estadoEquipo: data.rows.item(i).estadoEquipo });
         }
       }
       return materiales;
@@ -382,7 +382,8 @@ export class DatabaseProvider {
       horasEstimadas TEXT,
       equipo TEXT,
       tipoOt TEXT,
-      descOT TEXT
+      descOT TEXT,
+      motivorep TEXT
       );` , <any>{})
           .then(() => {
             return this.database.executeSql(
@@ -398,7 +399,8 @@ export class DatabaseProvider {
           numActividad TEXT,
           equipo TEXT,
           tipoOt TEXT,
-          descOt TEXT
+          descOt TEXT,
+          motivorep TEXT
           );` , <any>{})
               .then(() => {
                 return this.database.executeSql(
@@ -464,7 +466,8 @@ export class DatabaseProvider {
                                   codAct TEXT,
                                   codPieza TEXT,
                                   rutTecnico TEXT,
-                                  cantidad TEXT
+                                  cantidad TEXT,
+                                  estadoEquipo TEXT
                                   );` , <any>{})
                                       .then(() => {
                                         return this.database.executeSql(
@@ -514,9 +517,8 @@ export class DatabaseProvider {
 
         if (self.itemsActualizarActividad.length > 0) {
           for (var i = 0; i < self.itemsActualizarActividad.length; i++) {
-            self.actividadesProv.soapinvokeR5EventInterfacePpmUpdate(self.itemsActualizarActividad[i].codOt, self.itemsActualizarActividad[i].estadoOt, self.itemsActualizarActividad[i].notas, self.itemsActualizarActividad[i].codUsuario, self.itemsActualizarActividad[i].tareas, self.itemsActualizarActividad[i].actComplete, self.itemsActualizarActividad[i].codActividad, self.itemsActualizarActividad[i].horasEstimadas, self.itemsActualizarActividad[i].equipo, self.itemsActualizarActividad[i].tipoOt, self.itemsActualizarActividad[i].descOT);
+            self.actividadesProv.soapinvokeR5EventInterfacePpmUpdate(self.itemsActualizarActividad[i].codOt, self.itemsActualizarActividad[i].estadoOt, self.itemsActualizarActividad[i].notas, self.itemsActualizarActividad[i].codUsuario, self.itemsActualizarActividad[i].tareas, self.itemsActualizarActividad[i].actComplete, self.itemsActualizarActividad[i].codActividad, self.itemsActualizarActividad[i].horasEstimadas, self.itemsActualizarActividad[i].equipo, self.itemsActualizarActividad[i].tipoOt, self.itemsActualizarActividad[i].descOT, self.itemsActualizarActividad[i].motivorep);
           }
-
           self.deleteActualizarActividad().then(function (valueActActividad) {
 
 
@@ -535,7 +537,7 @@ export class DatabaseProvider {
 
           if (self.itemsCrearActividad.length > 0) {
             for (var i = 0; i < self.itemsCrearActividad.length; i++) {
-              self.actividadesProv.soapinvokeR5EventInterfacePpmCreate(self.itemsCrearActividad[i].codOt, self.itemsCrearActividad[i].estadoOt, self.itemsCrearActividad[i].notas, self.itemsCrearActividad[i].codUsuario, self.itemsCrearActividad[i].tareas, self.itemsCrearActividad[i].actComplete, self.itemsCrearActividad[i].horasEstimadas, self.itemsCrearActividad[i].numActividad, self.itemsCrearActividad[i].equipo, self.itemsCrearActividad[i].tipoOt, self.itemsCrearActividad[i].descOT);
+              self.actividadesProv.soapinvokeR5EventInterfacePpmCreate(self.itemsCrearActividad[i].codOt, self.itemsCrearActividad[i].estadoOt, self.itemsCrearActividad[i].notas, self.itemsCrearActividad[i].codUsuario, self.itemsCrearActividad[i].tareas, self.itemsCrearActividad[i].actComplete, self.itemsCrearActividad[i].horasEstimadas, self.itemsCrearActividad[i].numActividad, self.itemsCrearActividad[i].equipo, self.itemsCrearActividad[i].tipoOt, self.itemsCrearActividad[i].descOT, self.itemsActualizarActividad[i].motivorep);
             }
 
             self.deleteCrearActividad().then(function (valueCrearActividad) {
@@ -559,7 +561,6 @@ export class DatabaseProvider {
               for (var i = 0; i < self.itemsOtProgramada.length; i++) {
                 self.detalleOtProgramadaProv.soapinvokeR5CrearActividad(self.itemsOtProgramada[i].codOt, self.itemsOtProgramada[i].descOt, self.itemsOtProgramada[i].tipo, self.itemsOtProgramada[i].depto, self.itemsOtProgramada[i].codClase, self.itemsOtProgramada[i].falla, self.itemsOtProgramada[i].causa, self.itemsOtProgramada[i].accion);
               }
-
               self.deleteOtProgramada().then(function (valueOtProgramada) {
 
 
@@ -580,7 +581,6 @@ export class DatabaseProvider {
                 for (var i = 0; i < self.itemsInspeccionesCoti.length; i++) {
                   self.inspeccionesProv.soapinvokeR5InsertarInspeccionesPMPE01Coti(self.itemsInspeccionesCoti[i].codOt, self.itemsInspeccionesCoti[i].codEquipo, self.itemsInspeccionesCoti[i].valorMedicion, self.itemsInspeccionesCoti[i].codTecnico);
                 }
-
                 self.deleteInspeccionesCoti().then(function (valueInsCoti) {
 
 
@@ -642,7 +642,6 @@ export class DatabaseProvider {
 
                     if (self.itemsCambiarEstadoOt.length > 0) {
                       for (var i = 0; i < self.itemsCambiarEstadoOt.length; i++) {
-                        //   self. .comentariosProv.soapinvokeR5addetailsinterface(self.itemsComentarios[i].codOt,self.itemsComentarios[i].comentario,self.itemsComentarios[i].usuario,self.itemsComentarios[i].linea);
                       }
 
                       self.deleteEstadosOt().then(function (valueEstadosOt) {
@@ -663,7 +662,7 @@ export class DatabaseProvider {
 
                       if (self.itemsMateriales.length > 0) {
                         for (var i = 0; i < self.itemsMateriales.length; i++) {
-                          self.materialesProv.soapinvokeR5IngresarMateriales(self.itemsMateriales[i].tipoTrx, self.itemsMateriales[i].almacen, self.itemsMateriales[i].codOt, self.itemsMateriales[i].codAct, self.itemsMateriales[i].codPieza, self.itemsMateriales[i].rutTecnico, self.itemsMateriales[i].cantidad);
+                          self.materialesProv.soapinvokeR5IngresarMateriales(self.itemsMateriales[i].tipoTrx, self.itemsMateriales[i].almacen, self.itemsMateriales[i].codOt, self.itemsMateriales[i].codAct, self.itemsMateriales[i].codPieza, self.itemsMateriales[i].rutTecnico, self.itemsMateriales[i].cantidad, self.itemsMateriales[i].estadoEquipo);
                         }
 
                         self.deleteMateriales().then(function (valueMateriales) {
@@ -678,7 +677,6 @@ export class DatabaseProvider {
                         });
 
                       }
-                      //10 servicio
                       self.getRotaciones().then(function (valueRotacion) {
                         self.itemsRotaciones = valueRotacion;
 

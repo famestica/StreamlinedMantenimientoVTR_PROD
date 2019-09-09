@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OtcrearactividadesPage } from '../otcrearactividades/otcrearactividades';
 import { ComentariosPage } from '../comentarios/comentarios';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { OtrotacionesPage } from '../otrotaciones/otrotaciones';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ComentariosDataProvider } from '../../providers/comentarios-data/comentarios-data';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
@@ -46,7 +47,9 @@ export class OtdetallePage {
   actividad: string = '';
   descactividad: string = '';
   r5personel: any;
+  itemsEstados: any;
   estadoOT: string;
+  estadoLista: any = [];
   descOt: string;
   nombreactivo: string;
   descripcion: string;
@@ -56,9 +59,10 @@ export class OtdetallePage {
   etapa: string;
   accion: string;
   itemsSistemas: any;
-  itemsEstados: any;
   itemsEquipos: any;
   tipoTrabajo: string;
+  descripcionActividad: string;
+  codTarea: string;
   itemsEtapa: any;
   almacen: string;
   itemsCausa: any;
@@ -67,6 +71,9 @@ export class OtdetallePage {
   rutTecnico: string;
   itemsUrl: any = [];
   itemsUpload: any = [];
+  equipo: string;
+  claseSistema: string;
+  descTarea: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public geolocation: Geolocation, private loadingCtrl: LoadingController
     , private camera: Camera, public dataService: ComentariosDataProvider, public scanner: BarcodeScanner, public detalleOtProgDataService: DetalleOtProgramadaDataProvider, public alertCtrl: AlertController, public database: DatabaseProvider, private network: Network, public dropbox: DropboxProvider, private base64: Base64) {
@@ -76,6 +83,11 @@ export class OtdetallePage {
     this.itemsEquipos = [
       { equipo: this.items.nombreactivo, }];
     this.myForm = this.createMyForm();
+    this.myForm.controls['sistema'].disable();
+    this.myForm.controls['departamento'].disable();
+    this.myForm.controls['direccion'].disable();
+    this.myForm.controls['nombreactivo'].disable();
+    this.myForm.controls['estado'].disable();
 
   }
 
@@ -142,13 +154,20 @@ export class OtdetallePage {
     this.valorOT = this.items.numerost;
     this.tipoOT = this.items.tipoot;
     this.tipoTrabajo = this.items.tipootdb;
+    this.descOt = this.items.descripcion;
     this.actividad = this.items.actividad;
+    this.descripcionActividad = this.items.descactividad;
+    this.codTarea = this.items.codTarea;
     this.descactividad = this.items.desctarea;
     this.rutTecnico = this.r5personel[0].rutTecnico;
     this.almacen = this.r5personel[0].almacenTecnico;
     this.estadoOT = this.items.estado;
-    this.clase = this.items.claseSistema;
+    this.claseSistema = this.items.claseSistema;
     this.depto = this.items.codDepto;
+    this.equipo = this.items.equipo;
+    this.codTarea = this.items.tarea;
+    this.descTarea = this.items.desctarea;
+
 
 
 
@@ -158,7 +177,8 @@ export class OtdetallePage {
       self.itemComentarioCount = parseInt(CountComment.toString());
       self.detalleOtProgDataService.soapinvokeR5authEstados(self.userTecnico, self.estadoOT).then(function (valueR5Auth) {
         self.itemsEstados = valueR5Auth;
-
+        self.estadoLista = self.itemsEstados[0].estado;
+        self.myForm.get('estado').setValue(self.estadoLista);
         self.detalleOtProgDataService.soapinvokeR5ucodesSistemas().then(function (valueR5CodesSistemas) {
           self.itemsSistemas = valueR5CodesSistemas;
 
@@ -209,25 +229,24 @@ export class OtdetallePage {
 
   private createMyForm() {
     return this.formBuilder.group({
-      numerost: [this.items.numerost, Validators.required],
-      idst: [this.items.idst, Validators.required],
-      nombreactivo: ['', Validators.required],
-      descactivo: [this.items.nombreactivo, Validators.required],
-      descripcion: [this.items.descripcion, Validators.required],
-      tipoot: [this.items.tipoot, Validators.required],
+      numerost: [this.items.numerost],
+      idst: [this.items.idst],
+      nombreactivo: [this.items.nombreactivo],
+      tipoot: [this.items.tipoot],
       prioridad: [''],
       localidad: [''],
-      departamento: [''],
-      sistema: [''],
+      departamento: [this.items.codDepto],
+      sistema: [this.items.claseSistema],
+      direccion: [this.items.direccion],
       impacto: [''],
-      activoafectado: ['', Validators.required],
+      activoafectado: [''],
       comuna: [''],
       nodo: [''],
       cuadrante: [''],
-      estado: ['', Validators.required],
-      etapa: ['', Validators.required],
-      causa: ['', Validators.required],
-      accion: ['', Validators.required],
+      estado: [''],
+      etapa: [''],
+      causa: [''],
+      accion: [''],
     });
   }
 
@@ -244,10 +263,17 @@ export class OtdetallePage {
   goToOtActividades() {
     this.navCtrl.push(OtcrearactividadesPage, {
       data: this.valorOT,
-      equipo: this.nombreactivo,
+      equipo: this.items.nombreactivo,
       username: this.userTecnico,
       actividad: this.actividad,
-      estadoOt: this.items.estado
+      estadoOt: this.items.estado,
+      tipoOt: this.tipoOT,
+      descOt: this.descOt,
+      codTarea: this.codTarea,
+      descripcionActividad: this.descripcionActividad,
+      descTarea: this.descTarea,
+      depto: this.depto,
+
 
     });
   }
@@ -259,6 +285,14 @@ export class OtdetallePage {
     });
   }
 
+  goToOtRotaciones() {
+    this.navCtrl.push(OtrotacionesPage, {
+      data: this.valorOT,
+      almacenParam: this.almacen,
+      rutTecParam: this.rutTecnico
+    });
+  }
+
   cargarGeolocalizacion() {
 
     this.geolocation.getCurrentPosition().then((position) => {
@@ -266,7 +300,6 @@ export class OtdetallePage {
       this.latitud = position.coords.latitude;
 
     }, (err) => {
-      console.log(err);
     });
 
   }
@@ -321,11 +354,9 @@ export class OtdetallePage {
 
 
         }, (err) => {
-          console.log(err);
         });
 
       }, (err) => {
-        console.log(err);
       });
   }
 
@@ -345,6 +376,7 @@ export class OtdetallePage {
   }
 
   checkform() {
+  
   }
 
   showLoading() {

@@ -18,18 +18,21 @@ export class RotacionDataProvider {
 
     this.estadosEquipo = [
       { estadoequipo: 'BUENO' },
-      { estadoequipo: 'DANADO' },
-      { estadoequipo: 'PERDIDO' }]
+      { estadoequipo: 'DAÑADO' },
+      { estadoequipo: 'PERDIDO' },
+      { estadoequipo: 'DESCUADRE' }]
 
   }
 
   public soapinvokeR5IngresarRotacion(equipoAntiguo, equipoNuevo, codOt, estadoEquipo, rutTecnico, descripcion) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/ingresarRotacion?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/ingresarRotacion?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/ingresarRotacion/LOGEMPIngresarRotacionPortType/LOGEMPIngresarRotacionOperationRequest");
 
@@ -90,7 +93,7 @@ export class RotacionDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerObjetoOriginal?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerObjetoOriginal?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -213,7 +216,7 @@ export class RotacionDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerObjetoNuevo?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerObjetoNuevo?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");

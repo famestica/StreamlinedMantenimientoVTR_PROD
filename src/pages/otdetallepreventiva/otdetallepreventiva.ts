@@ -39,6 +39,9 @@ export class OtdetallepreventivaPage {
   userTecnico: string;
   itemComentarioCount: number;
   estadoOT: string;
+  descripcionActividad: string;
+  codTarea: string;
+  depto: string;
   tipoTrabajo: string;
   rutTecnico: string;
   estadoLista: any = [];
@@ -54,6 +57,7 @@ export class OtdetallepreventivaPage {
   itemsUrl: any = [];
   itemsUpload: any = [];
   claseSistema: string;
+  descTarea: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private loadingCtrl: LoadingController, public geolocation: Geolocation
     , private camera: Camera, public dataService: ComentariosDataProvider, public detalleOtPrevDataService: DetalleOtPreventivaDataProvider, public alertCtrl: AlertController, public dropbox: DropboxProvider, private base64: Base64) {
@@ -74,6 +78,7 @@ export class OtdetallepreventivaPage {
   }
 
   saveData() {
+    
   }
 
 
@@ -89,12 +94,16 @@ export class OtdetallepreventivaPage {
     this.tipoTrabajo = this.items.tipootdb;
     this.actividad = this.items.actividad;
     this.descactividad = this.items.desctarea;
+    this.descripcionActividad = this.items.descactividad;
     this.descOt = this.items.descripcion;
     this.equipo = this.items.equipo;
     this.rutTecnico = this.r5personel[0].rutTecnico;
     this.almacen = this.r5personel[0].almacenTecnico;
     this.estadoOT = this.items.estado;
+    this.depto = this.items.codDepto;
     this.claseSistema = this.items.claseSistema;
+    this.codTarea = this.items.tarea;
+    this.descTarea = this.items.desctarea;
 
     this.showLoading();
     var self = this;
@@ -196,11 +205,11 @@ export class OtdetallepreventivaPage {
 
 
         }, (err) => {
-          console.log(err);
+         
         });
 
       }, (err) => {
-        console.log(err);
+       
       });
   }
 
@@ -240,7 +249,11 @@ export class OtdetallepreventivaPage {
       actividad: this.actividad,
       estadoOt: this.items.estado,
       tipoOt: this.tipoOT,
-      descOt: this.descOt
+      descOt: this.descOt,
+      codTarea: this.codTarea,
+      descripcionActividad: this.descripcionActividad,
+      descTarea: this.descTarea,
+      depto: this.depto,
     });
   }
 
@@ -257,9 +270,14 @@ export class OtdetallepreventivaPage {
   goToOtInspecciones() {
     this.navCtrl.push(OtinspeccionesPage, {
       data: this.valorOT,
-      tipoOT: this.tipoOT,
-      tipoTrabajo: this.tipoTrabajo,
-      username: this.userTecnico
+      equipo: this.items.nombreactivo,
+      username: this.userTecnico,
+      actividad: this.actividad,
+      estadoOt: this.items.estado,
+      tipoOt: this.tipoOT,
+      descOt: this.descOt,
+      tipoTrabajo: this.tipoTrabajo
+      
     });
   }
 

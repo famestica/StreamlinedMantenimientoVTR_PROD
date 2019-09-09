@@ -34,6 +34,7 @@ import { Camera } from '@ionic-native/camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { DetalleOtPreventivaDataProvider } from '../providers/detalle-ot-preventiva-data/detalle-ot-preventiva-data';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetalleOtProgramadaDataProvider } from '../providers/detalle-ot-programada-data/detalle-ot-programada-data';
 import { MSAdal } from '@ionic-native/ms-adal';
 import { DatabaseProvider } from '../providers/database/database';
@@ -42,6 +43,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter';
 import { SQLite } from '@ionic-native/sqlite';
 import { DropboxProvider } from '../providers/dropbox/dropbox';
 import { Base64 } from '@ionic-native/base64';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   declarations: [
@@ -61,8 +63,10 @@ import { Base64 } from '@ionic-native/base64';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     HttpModule,
     SelectSearchableModule,
+    IonicSelectableModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp, { mode: 'md' })
   ],

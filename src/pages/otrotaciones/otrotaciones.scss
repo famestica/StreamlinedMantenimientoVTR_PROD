@@ -13,6 +13,14 @@ page-otrotaciones {
         overflow: hidden;
     }
 
+    .codigoqr
+    {
+        width : 45px ;
+        height : 40px;
+        margin-left: -30px; 
+        margin-top: 30px;
+
+    }
 
     ion-item .item-inner{
         border-bottom-color: #dedede;
@@ -41,24 +49,17 @@ page-otrotaciones {
     }
 
     .botonguardar{
-        width: 60%;
-        margin-left: 86px;
         text-align: center;
-        margin-top: 60px;
+        display: inline-block; 
         border-radius: 15px !important;
-        height: 50px;
 
     }
 
-    .botonguardarotro{
-        width: 60%;
-        margin-left: 86px;
+    .center{
         text-align: center;
-        border-radius: 15px !important;
-        height: 50px;
-        margin-top: -25px;
-
     }
+
+
 
     .busquedaestado{
         border: 2px solid #222;

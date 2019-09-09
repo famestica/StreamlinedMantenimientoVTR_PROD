@@ -5,6 +5,8 @@ import { MaterialesDataProvider } from '../../providers/materiales-data/material
 
 import { Network } from '@ionic-native/network';
 import { DatabaseProvider } from '../../providers/database/database';
+import { IonicSelectableComponent } from 'ionic-selectable';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 /**
  * Generated class for the OtcrearmaterialesPage page.
@@ -16,6 +18,14 @@ import { DatabaseProvider } from '../../providers/database/database';
 @Component({
   selector: 'page-otcrearmateriales',
   templateUrl: 'otcrearmateriales.html',
+    animations: [
+    trigger('showEstadoEquipo', [
+      state('true', style({ opacity: 1})),
+      state('false', style({ opacity: 0 ,display:'none' })),
+      transition('false => true', animate('300ms ease-in')),
+      transition('true => false', animate('300ms ease-out'))
+    ])
+  ]
 })
 export class OtcrearmaterialesPage {
 
@@ -37,6 +47,10 @@ export class OtcrearmaterialesPage {
   rutTecnico: string;
   stock: any;
   validateNumberType: boolean;
+  estadosEquipo: any;
+  estadoEquipo: any;
+  itemEstado: string;
+  showEstadoEquipo:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private loadingCtrl: LoadingController, public dataService: MaterialesDataProvider
     , public alertCtrl: AlertController, public database: DatabaseProvider, private network: Network) {
@@ -47,9 +61,13 @@ export class OtcrearmaterialesPage {
     this.almacenParam = navParams.get('almacen');
     this.myForm = this.createMyForm();
     this.myForm.controls['stock'].disable();
+    this.myForm.controls['actividad'].disable();
+    this.myForm.controls['descpieza'].disable();
+    this.myForm.controls['estante'].disable();
   }
 
   saveData() {
+    
   }
 
   ionViewDidLoad() {
@@ -62,6 +80,7 @@ export class OtcrearmaterialesPage {
     this.dataService.soapinvokeR5ObtenerMateriales(this.rutTecnico, this.almacenParam).then(function (r5ObtenerMateriales) {
       self.items = r5ObtenerMateriales;
       self.setFilteredItemsTipoTransaccion();
+      self.setFilteredItemsEstadosEquipo();
       self.myForm.get('pieza').setValue(self.items.pieza);
       self.loading.dismiss();
 
@@ -76,14 +95,15 @@ export class OtcrearmaterialesPage {
   private createMyForm() {
     return this.formBuilder.group({
       almacen: [''],
-      pieza: ['', Validators.compose([Validators.minLength(1), Validators.required])],
+      pieza: ['', Validators.required],
       descpieza: [''],
-      actividad: [this.actividad, Validators.compose([Validators.minLength(1), Validators.required])],
-      descactividad: [this.descactividad, Validators.compose([Validators.minLength(1), Validators.required])],
-      estante: ['', Validators.compose([Validators.minLength(1), Validators.required])],
-      cantidad: ['', Validators.compose([Validators.minLength(1), Validators.required])],
-      tipotransaccion: ['', Validators.compose([Validators.minLength(1), Validators.required])],
-      stock: ['', Validators.compose([Validators.minLength(1), Validators.required])],
+      actividad: [this.actividad, Validators.required],
+      descactividad: [''],
+      estante: ['', Validators.required],
+      cantidad: ['', Validators.required],
+      tipotransaccion: ['', Validators.required],
+      stock: ['', Validators.required],
+      estadoEquipo: [''],
     });
   }
 
@@ -131,10 +151,17 @@ export class OtcrearmaterialesPage {
 
   }
 
+  setFilteredItemsEstadosEquipo() {
+    this.estadosEquipo = this.dataService.filterEstadosEquipo();
+  }
 
 
-  llenadoCampos() {
-    this.datosMateriales = this.dataService.filterMatByPieza(this.pieza);
+
+  llenadoCampos(event: {
+    component: IonicSelectableComponent,
+    value: any 
+  }) {
+    this.datosMateriales = this.dataService.filterMatByPieza(event.value.idpieza);
     this.myForm.get('stock').setValue(this.datosMateriales[0].stock);
     this.myForm.get('estante').setValue(this.datosMateriales[0].estante);
     this.myForm.get('descpieza').setValue(this.datosMateriales[0].descpieza);
@@ -147,7 +174,8 @@ export class OtcrearmaterialesPage {
     if (networkType === 'none') {
       this.showLoading();
       var self = this;
-      self.database.addInsertarMateriales(self.myForm.get('tipotransaccion').value, this.almacenParam, this.valorOT, this.actividad, self.myForm.get('pieza').value, this.rutTecnico, self.myForm.get('cantidad').value).then(function (value) {
+      
+      self.database.addInsertarMateriales(self.myForm.get('tipotransaccion').value, self.almacenParam, self.valorOT, self.actividad, self.pieza.idpieza, self.rutTecnico, self.myForm.get('cantidad').value, self.myForm.get('estadoEquipo').value).then(function (value) {
 
         self.navCtrl.pop();
         let alert = self.alertCtrl.create({
@@ -170,7 +198,7 @@ export class OtcrearmaterialesPage {
     else {
       this.showLoading();
       var self = this;
-      this.dataService.soapinvokeR5IngresarMateriales(self.myForm.get('tipotransaccion').value, this.almacenParam, this.valorOT, this.actividad, self.myForm.get('pieza').value, this.rutTecnico, self.myForm.get('cantidad').value).then(function (r5IngresarMateriales) {
+      this.dataService.soapinvokeR5IngresarMateriales(self.myForm.get('tipotransaccion').value, self.almacenParam, self.valorOT, self.actividad, self.pieza.idpieza, self.rutTecnico, self.myForm.get('cantidad').value, self.myForm.get('estadoEquipo').value).then(function (r5IngresarMateriales) {
         self.loading.dismiss();
         self.navCtrl.pop();
         let alert = self.alertCtrl.create({
@@ -210,6 +238,22 @@ export class OtcrearmaterialesPage {
     });
     alert.present();
   }
+
+  showHideEstadoEquipo(){
+    var self = this;
+    if(self.myForm.get('tipotransaccion').value == 'DEVOLUCION')
+    {
+      this.showEstadoEquipo = true;
+      this.myForm.get('estadoEquipo').setValue('');
+    }
+    else
+    {
+      this.showEstadoEquipo = false;
+      this.myForm.get('estadoEquipo').setValue('');
+    }
+    
+
+   }
 
   validateNumericType(data) {
     return !isNaN(Number(data.toString()));

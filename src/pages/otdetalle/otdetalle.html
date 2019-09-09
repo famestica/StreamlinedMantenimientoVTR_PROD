@@ -17,16 +17,20 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12>
-          <ion-item no-lines>
-            <ion-label color="dark" stacked>Equipo:<span danger>*</span></ion-label>
-            <ion-select interface="popover" formControlName="nombreactivo" [(ngModel)]="nombreactivo"
-              (ionChange)="obtenerEtapa()" class="busquedaequipo">
-              <ion-option *ngFor="let equiposList of itemsEquipos" value="{{equiposList.equipo}}">{{equiposList.equipo}}
-              </ion-option>
-            </ion-select>
-          </ion-item>
+            <ion-item no-lines>
+                <ion-label color="dark" stacked>Equipo:</ion-label>
+                <ion-input text-center formControlName="nombreactivo"></ion-input>
+              </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row>
+          <ion-col col-12>
+              <ion-item no-lines>
+                  <ion-label color="dark" stacked>Estado:</ion-label>
+                  <ion-input text-center formControlName="estado"></ion-input>
+                </ion-item>
+          </ion-col>
+        </ion-row>
       <ion-row>
         <ion-col col-12>
           <ion-item no-lines>
@@ -34,85 +38,19 @@
             <ion-input text-center formControlName="departamento"></ion-input>
           </ion-item>
         </ion-col>
-      </ion-row>
-      <ion-row>
         <ion-col col-12>
           <ion-item no-lines>
-            <ion-label color="dark" stacked>Sistema:</ion-label>
-            <ion-select interface="popover" formControlName="sistema" [(ngModel)]="sistema" class="busquedasistema">
-              <ion-option *ngFor="let sistemaList of itemsSistemas" value="{{sistemaList.sistema}}">
-                {{sistemaList.sistema}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-7>
-          <ion-item no-lines>
-            <ion-label color="dark" stacked>Activo Afect:<span danger>*</span></ion-label>
-            <ion-input text-center class="inputcorrectivoafect" formControlName="activoafectado"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-5>
-          <div padding>
-            <button ion-button type="button" class="botonlectorcodigo" color="dark" block (click)="scan()">Lector
-              Barr.</button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid class="gridcorrectivo">
-      <ion-row>
-        <ion-col col-12>
-          <ion-item no-lines>
-            <ion-label color="dark" text-center>Cierre Correctivo</ion-label>
+            <ion-label color="dark" stacked>Dirección:</ion-label>
+            <ion-input text-center formControlName="direccion"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <ion-item no-lines>
-            <ion-label color="dark" stacked>Estado:<span danger>*</span></ion-label>
-            <ion-select interface="popover" formControlName="estado" [(ngModel)]="estado" class="busquedaestado">
-              <ion-option *ngFor="let estadoList of itemsEstados" value="{{estadoList.estado}}">{{estadoList.estado}}
-              </ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <ion-item no-lines>
-            <ion-label color="dark" stacked>Etapa:<span danger>*</span></ion-label>
-            <ion-select interface="popover" formControlName="etapa" [(ngModel)]="etapa" (ionChange)="obtenerCausa()"
-              class="busquedaestado">
-              <ion-option *ngFor="let etapaList of itemsEtapa" value="{{etapaList.etapa}}">{{etapaList.etapa}}
-              </ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <ion-item no-lines>
-            <ion-label color="dark" stacked>Causa:<span danger>*</span></ion-label>
-            <ion-select interface="popover" formControlName="causa" [(ngModel)]="causa" class="busquedaestado">
-              <ion-option *ngFor="let causaList of itemsCausa" value="{{causaList.causa}}">{{causaList.causa}}
-              </ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <ion-item no-lines>
-            <ion-label color="dark" stacked>Acción:<span danger>*</span></ion-label>
-            <ion-select interface="popover" formControlName="accion" [(ngModel)]="accion" (ionChange)="checkform()"
-              class="busquedaestado">
-              <ion-option *ngFor="let accionList of itemsAccion" value="{{accionList.accion}}">{{accionList.accion}}
-              </ion-option>
-            </ion-select>
-          </ion-item>
+            <ion-item no-lines>
+                <ion-label color="dark" stacked>Sistema:</ion-label>
+                <ion-input text-center formControlName="sistema"></ion-input>
+              </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -148,16 +86,13 @@
         </ion-col>
       </ion-row>
       <ion-row class="rowcorrectivoboton">
-        <ion-col col-4>
-        </ion-col>
-        <ion-col col-4>
-          <div padding>
-            <button ion-button class="radiusbottom" color="dark" [disabled]="!myForm.valid" block>Enviar</button>
-          </div>
-        </ion-col>
-        <ion-col col-4>
-        </ion-col>
-      </ion-row>
+          <ion-col col-6>
+              <div padding>
+                <button ion-button type="button" color="dark" class="radius" block
+                  (click)="goToOtRotaciones()">Rotación</button>
+              </div>
+            </ion-col>
+        </ion-row>
     </ion-grid>
   </form>
 </ion-content>

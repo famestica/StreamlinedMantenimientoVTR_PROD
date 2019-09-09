@@ -12,6 +12,7 @@ export class ActividadesDataProvider {
 
   itemsActividades: any = [];
   itemsTareas: any = [];
+  itemsTecnicos: any = [];
   itemsMotivoReparacion: any = [];
 
   constructor(public http: HttpClient) {
@@ -26,10 +27,12 @@ export class ActividadesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListaSistemas?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerListaSistemas?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/obtenerListaSistemas/LOGEMPObtenerListaSistemasPortType/LOGEMPObtenerListaSistemasOperationRequest");
 
@@ -120,13 +123,118 @@ export class ActividadesDataProvider {
     });
   };
 
-  public soapinvokeR5EventInterfacePpmUpdate(codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOt) {
+  soapinvokeR5ucodesTecnicos(deptTecnico) {
+
+    var self = this;
+    this.itemsTecnicos = [];
+    return new Promise(function (resolve, reject) {
+
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerListaSistemas?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
+      xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
+      xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/obtenerListaSistemas/LOGEMPObtenerListaSistemasPortType/LOGEMPObtenerListaSistemasOperationRequest");
+
+
+      var sr =
+        `<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:head="http://osbcorp.vtr.cl/GLOBAL/EMP/HeaderRequest" xmlns:obt="http://osbcorp.vtr.cl/LOG/EMP/obtenerListaSistemas">
+                  <soap:Header>
+                     <head:HeaderRequest>
+                        <head:Username>STLN</head:Username>
+                        <head:Company>STLN</head:Company>
+                        <head:AppName>SEAM</head:AppName>
+                        <head:IdClient>STLN</head:IdClient>
+                        <head:ReqDate>2018-09-15T00:00:00</head:ReqDate>
+                     </head:HeaderRequest>
+                  </soap:Header>
+                  <soap:Body>
+                  <obt:obtenerListaSistemasRequest>
+                      <obt:codigoParametro>TEC-` + deptTecnico + `</obt:codigoParametro>
+                  </obt:obtenerListaSistemasRequest>         
+                  </soap:Body>
+               </soap:Envelope>`;
+
+
+      xmlhttp.onreadystatechange = () => {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            var xml = xmlhttp.responseXML;
+
+            let responseLenght;
+            let codSistemas;
+            let descSistemas;
+            let codSistemasArr;
+            let descSistemasArr;
+            var i = 0;
+            codSistemas = xml.getElementsByTagName("obt:codigoParametro");
+            descSistemas = xml.getElementsByTagName("obt:descripcionParametro");
+
+            responseLenght = xml.getElementsByTagName("obt:listas")[0].childNodes.length;
+
+            for (i = 0; i < responseLenght; i++) {
+
+              if (!codSistemas[i].childNodes[0]) {
+              }
+              else {
+                if (codSistemas[i].childNodes[0]) {
+                  codSistemasArr = codSistemas[i].childNodes[0].nodeValue;
+                }
+                else {
+                  codSistemasArr = '';
+                }
+
+                if (descSistemas[i].childNodes[0]) {
+                  descSistemasArr = descSistemas[i].childNodes[0].nodeValue;
+                }
+                else {
+                  descSistemasArr = '';
+                }
+
+
+                self.itemsTecnicos.push({
+                  tecnicoDesc: descSistemasArr,
+                  tecnicoItem: codSistemasArr,
+                  comptecnico: codSistemasArr + ' - ' + descSistemasArr,
+
+
+                });
+
+              }
+
+            }
+
+            resolve(self.itemsTecnicos);
+
+          }
+          else {
+            reject(new Error('Error en invocacion'));
+          }
+        }
+      }
+      xmlhttp.onerror = function () {
+        reject(new Error('Error en invocacion'));
+      };
+
+      xmlhttp.responseType = "document";
+      xmlhttp.send(sr);
+
+
+    });
+  };
+
+  public soapinvokeR5EventInterfacePpmUpdate(codOt, estadoOt, notas, codUsuario, tareas, actComplete, codActividad, horasEstimadas, equipo, tipoOt, descOt,motivorep) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/crearActividadPpm?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/crearActividadPpm?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/crearActividadPpm/LOGEMPCrearActividadPpmPortType/LOGEMPCrearActividadPpmOperationRequest");
 
@@ -154,14 +262,13 @@ export class ActividadesDataProvider {
                   <cre:estadoOt>` + estadoOt + `</cre:estadoOt>
                   <cre:notas>` + notas + `</cre:notas>
                   <cre:codigoUsuario>` + codUsuario + `</cre:codigoUsuario>
-                  <cre:tareas>` + tareas + `</cre:tareas>
+                  <cre:tareas>` + tareas + '-'+motivorep+`</cre:tareas>
                   <cre:flagActividadCompletada>` + actComplete + `</cre:flagActividadCompletada>
                   <cre:codigoActividad>` + codActividad + `</cre:codigoActividad>
                   <cre:horasEstimadas>` + horasEstimadas + `</cre:horasEstimadas>
                 </cre:crearActividadPpmRequest>
                   </soap:Body>
                </soap:Envelope>`;
-
 
       xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4) {
@@ -188,13 +295,15 @@ export class ActividadesDataProvider {
     });
   };
 
-  public soapinvokeR5EventInterfacePpmCreate(codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividadInc, equipo, tipoOt, descOt) {
+  public soapinvokeR5EventInterfacePpmCreate(codOt, estadoOt, notas, codUsuario, tareas, actComplete, horasEstimadas, numActividadInc, equipo, tipoOt, descOt,motivorep) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/crearActividadPpm?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/crearActividadPpm?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/crearActividadPpm/LOGEMPCrearActividadPpmPortType/LOGEMPCrearActividadPpmOperationRequest");
 
@@ -217,12 +326,12 @@ export class ActividadesDataProvider {
                     <cre:descripcionOt>` + descOt + `</cre:descripcionOt>
                     <cre:tipoTransaccion>U</cre:tipoTransaccion>
                     <cre:tipo>` + tipoOt + `</cre:tipo>
-                    <cre:centroCosto>213</cre:centroCosto>
+                    <cre:centroCosto>213</cre:centroCosto> 
                     <cre:equipo>` + equipo + `</cre:equipo>
                     <cre:estadoOt>` + estadoOt + `</cre:estadoOt>
                     <cre:notas>` + notas + `</cre:notas>
                     <cre:codigoUsuario>` + codUsuario + `</cre:codigoUsuario>
-                    <cre:tareas>` + tareas + `</cre:tareas>
+                    <cre:tareas>` + tareas + '-'+motivorep+`</cre:tareas>
                     <cre:flagActividadCompletada>` + actComplete + `</cre:flagActividadCompletada>
                     <cre:codigoActividad></cre:codigoActividad>
                     <cre:horasEstimadas>` + horasEstimadas + `</cre:horasEstimadas>
@@ -265,10 +374,12 @@ export class ActividadesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerListaSistemas?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerListaSistemas?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/obtenerListaSistemas/LOGEMPObtenerListaSistemasPortType/LOGEMPObtenerListaSistemasOperationRequest");
 
@@ -311,7 +422,6 @@ export class ActividadesDataProvider {
             for (i = 0; i < responseLenght; i++) {
 
               if (!codSistemas[i].childNodes[0]) {
-                console.log('No se inserta nodo por estar vacio');
               }
               else {
                 if (codSistemas[i].childNodes[0]) {

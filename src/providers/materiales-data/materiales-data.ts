@@ -13,12 +13,21 @@ export class MaterialesDataProvider {
   items: any = [];
   listadoAlmacen: any = [];
   tipotransaccion: any;
+  estadosEquipo: any;
   constructor(public http: HttpClient) {
 
 
     this.tipotransaccion = [
       { tipotransaccion: 'DESPACHO' },
       { tipotransaccion: 'DEVOLUCION' }]
+
+      this.estadosEquipo = [
+        { estadoequipo: 'BUENO' },
+        { estadoequipo: 'DAÑADO' },
+        { estadoequipo: 'PERDIDO' },
+        { estadoequipo: 'DESCUADRE' }]
+
+      
   }
   filterItemsOt(OtParam) {
     return this.items.filter((item) => {
@@ -34,10 +43,12 @@ export class MaterialesDataProvider {
     return new Promise(function (resolve, reject) {
 
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/obtenerMaterial?wsdl', true);
-      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xmlhttp.open('POST', 'https://seam.vtr.cl/obtenerMaterial?wsdl', true);
+      xmlhttp.withCredentials = true;
+      xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+      xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
       xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
       xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/obtenerMaterial/LOGEMPObtenerMaterialPortType/LOGEMPObtenerMaterialOperationRequest");
 
@@ -147,10 +158,10 @@ export class MaterialesDataProvider {
     });
   };
 
-  public soapinvokeR5IngresarMateriales(tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad) {
+  public soapinvokeR5IngresarMateriales(tipoTrx, almacen, codOt, codAct, codPieza, rutTecnico, cantidad, estadoEquipo) {
     return new Promise(function (resolve, reject) {
       var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/instalarMateriales?wsdl', true);
+      xmlhttp.open('POST', 'https://seam.vtr.cl/instalarMateriales?wsdl', true);
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
       xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
@@ -171,7 +182,7 @@ export class MaterialesDataProvider {
                   </soap:Header>
                   <soap:Body>
                       <ins:instalarMaterialesRequest>
-                      <ins:tipoTransaccion>` + tipoTrx + `</ins:tipoTransaccion>
+                      <ins:tipoTransaccion>` + tipoTrx + '-'+estadoEquipo+`</ins:tipoTransaccion>
                       <ins:almacen>` + almacen + `</ins:almacen>
                       <ins:codigoOT>` + codOt + `</ins:codigoOT>
                       <ins:pieza>` + codPieza + `</ins:pieza>
@@ -210,6 +221,10 @@ export class MaterialesDataProvider {
 
   filterAlmacen() {
     return this.listadoAlmacen;
+  }
+
+  filterEstadosEquipo() {
+    return this.estadosEquipo;
   }
 
   filterTipoTransaccion() {

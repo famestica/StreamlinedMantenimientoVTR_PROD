@@ -63,6 +63,7 @@ export class OtagregarcomentarioPage {
   }
 
   saveData() {
+    console.log(this.myForm.value);
   }
 
   private createMyForm() {

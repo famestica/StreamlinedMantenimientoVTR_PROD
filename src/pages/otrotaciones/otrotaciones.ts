@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Network } from '@ionic-native/network';
 import { DatabaseProvider } from '../../providers/database/database';
 
+import { BarcodeScanner ,BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+
 /**
  * Generated class for the OtrotacionesPage page.
  *
@@ -28,10 +30,15 @@ export class OtrotacionesPage {
   myForm: FormGroup;
   itemAntiguo: any;
   itemNuevo: any;
-  itemAnt: string;
-  itemNew: string;
+  itemAnt: any;
+  options :BarcodeScannerOptions;
+  encodText:string='';
+  encodedData:any={};
+  scannedData:any={};
+  scanData:string;
+  itemNew: any;
   itemAntVacio: string;
-  itemNewVacio: string;
+  itemNewVacio: any;
   itemEstado: string;
   estadosEquipo: any;
   estadoEquipo: any;
@@ -39,7 +46,7 @@ export class OtrotacionesPage {
   descripcionEquipoVacio: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: RotacionDataProvider, private loadingCtrl: LoadingController, public formBuilder: FormBuilder
-    , public alertCtrl: AlertController, public database: DatabaseProvider, private network: Network) {
+    , public alertCtrl: AlertController,public scanner: BarcodeScanner, public database: DatabaseProvider, private network: Network) {
     this.ot = navParams.get('data');
     this.almacen = navParams.get('almacenParam');
     this.ruttecnico = navParams.get('rutTecParam');
@@ -76,6 +83,7 @@ export class OtrotacionesPage {
   }
 
   saveData() {
+  
   }
 
   setFilteredItemsEstadosEquipo() {
@@ -98,7 +106,7 @@ export class OtrotacionesPage {
     let networkType = this.network.type;
     if (networkType === 'none') {
       var self = this;
-      self.database.addInsertarRotacion(self.itemAnt, self.itemNew, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (value) {
+      self.database.addInsertarRotacion(self.itemAnt.equipoantiguo, self.itemNew.equiponuevo, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (value) {
 
         let alert = self.alertCtrl.create({
           message: '<font size=3 color=black>La rotación se ha enviado exitosamente. Se ha enviado en modo offline, se sincronizará cuando se disponga de conexión</font>',
@@ -125,7 +133,7 @@ export class OtrotacionesPage {
     else {
       var self = this;
       if (self.itemNew === undefined) {
-        self.itemNewVacio = '';
+        self.itemNewVacio.equiponuevo = '';
 
       }
       else {
@@ -141,7 +149,7 @@ export class OtrotacionesPage {
         self.descripcionEquipoVacio = self.descripcionEquipo;
 
       }
-      this.dataService.soapinvokeR5IngresarRotacion(self.itemAnt, self.itemNewVacio, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (r5ObjAntiguoValue) {
+      this.dataService.soapinvokeR5IngresarRotacion(self.itemAnt.equipoantiguo, self.itemNewVacio.equiponuevo, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (r5ObjAntiguoValue) {
 
         let alert = self.alertCtrl.create({
           message: '<font size=3 color=black>La rotación se ha enviado exitosamente</font>',
@@ -167,11 +175,27 @@ export class OtrotacionesPage {
 
   }
 
+  scan()
+  {
+     this.options={
+       prompt: 'Escanear QR Desc. Equipo'
+     };
+     this.scanner.scan(this.options).then((data) => {
+       this.scannedData = data;
+       this.myForm.get('descripcionEquipo').setValue(this.scannedData.text);
+
+     },(err) => {
+       this.scanData=err;
+
+     })
+
+  }
+
   enviarRotacion() {
     let networkType = this.network.type;
     if (networkType === 'none') {
       var self = this;
-      self.database.addInsertarRotacion(self.itemAnt, self.itemNew, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (value) {
+      self.database.addInsertarRotacion(self.itemAnt.equipoantiguo, self.itemNew.equiponuevo, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (value) {
         self.navCtrl.pop();
         let alert = self.alertCtrl.create({
           message: '<font size=3 color=black>La rotación se ha enviado exitosamente. Se ha enviado en modo offline, se sincronizará cuando se disponga de conexión</font>',
@@ -198,7 +222,7 @@ export class OtrotacionesPage {
     else {
       var self = this;
       if (self.itemNew === undefined) {
-        self.itemNewVacio = '';
+        self.itemNewVacio.equiponuevo = '';
 
       }
       else {
@@ -214,7 +238,7 @@ export class OtrotacionesPage {
         self.descripcionEquipoVacio = self.descripcionEquipo;
 
       }
-      this.dataService.soapinvokeR5IngresarRotacion(self.itemAnt, self.itemNewVacio, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (r5ObjAntiguoValue) {
+      this.dataService.soapinvokeR5IngresarRotacion(self.itemAnt.equipoantiguo, self.itemNewVacio.equiponuevo, self.ot, self.itemEstado, self.ruttecnico, self.descripcionEquipoVacio).then(function (r5ObjAntiguoValue) {
         self.navCtrl.pop();
         let alert = self.alertCtrl.create({
           message: '<font size=3 color=black>La rotación se ha enviado exitosamente</font>',

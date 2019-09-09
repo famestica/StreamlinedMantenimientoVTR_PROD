@@ -9,11 +9,31 @@ page-otcrearmateriales {
         font-size: 13px;
     }
 
+    .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+        white-space: normal !important;
+   }
+
+   .ionic-selectable-modal-md, .ionic-selectable-modal-ios {
+   
+    white-space: normal !important;
+
+   }
+   .ionic-selectable {
+   
+    white-space: normal !important;
+
+   }
+   .item-content{
+    white-space: normal !important;
+   }
+   
+
 
     ion-item .item-inner{
         border-bottom-color: #dedede;
         -webkit-box-shadow: none;
-        box-shadow: none
+        box-shadow: none;
+        white-space: wrap ;
        }
       
 
@@ -24,8 +44,7 @@ page-otcrearmateriales {
     }
 
     .botonguardar{
-        width: 60%;
-        margin-left: 110px;
+        width: 100%;
         border-radius: 15px !important;
     }
 
@@ -73,6 +92,10 @@ page-otcrearmateriales {
 
     }
 
+    .modal{
+        white-space: normal !important;
+       }
+
     .busquedatransaccion{
         border: 2px solid #222;
         margin:3px auto;
@@ -93,6 +116,13 @@ page-otcrearmateriales {
         text-align: center;
     }
 
+    .ionic-selectable-ios, .ionic-selectable-md, .ionic-selectable-has-value {
+   
+        white-space: normal !important;
+        font-size:18px;
+    
+       }
+
     .busquedapieza{
         border: 2px solid #222;
         margin:3px auto;
@@ -101,6 +131,7 @@ page-otcrearmateriales {
         font-size: 13px;
         height: 35px;
         text-align: center;
+        white-space: wrap ;
     }
 
 }
@@ -126,3 +157,9 @@ page-otcrearmateriales {
   .alert-ios .alert-md .alert-radio-label {
     white-space: normal !important;
 }
+
+.item.sc-ion-label-md-h .item .sc-ion-label-md-h{
+    white-space: normal !important;
+}
+
+

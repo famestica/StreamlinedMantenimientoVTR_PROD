@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ActividadesDataProvider } from '../../providers/actividades-data/actividades-data';
 import { OtcrearactividadnuevaPage } from '../otcrearactividadnueva/otcrearactividadnueva';
+import { IonicSelectableComponent } from 'ionic-selectable';
 import { ComentariosDataProvider } from '../../providers/comentarios-data/comentarios-data';
 import { Base64 } from '@ionic-native/base64';
 import { DropboxProvider } from '../../providers/dropbox/dropbox';
@@ -27,25 +28,33 @@ export class OtcrearactividadesPage {
   myForm: FormGroup;
   valorOT: string = '';
   valorFilter: number;
+  valorFilterTarea: number;
   base64Image: string;
   loading: Loading;
   checkactividad: boolean = false;
   codigoctr: any;
   equipo: string;
   notas: string;
+  tecnicoplanificado: any;
   tipoOt: string;
   descOt: string;
+  depto: string;
   notasVacio: string;
   horasestimadas: string;
   tarea: any;
   numActividad: string;
   userTecnico: string;
+  descripcionActividad: string;
+  codTarea: string;
+  descTarea: string;
   motivorep: any;
   estadoOt: string;
+  tareaDefault: string;
   itemsCodigoActCtr: any;
   checkActividadString: string;
   itemsTareas: any;
   itemsMotivoRep: any;
+  itemsTecnicos: any;
   itemsUrl: any = [];
   itemsUpload: any = [];
   validateNumberType: boolean;
@@ -56,13 +65,21 @@ export class OtcrearactividadesPage {
     this.userTecnico = navParams.get('username');
     this.equipo = navParams.get('equipo');
     this.numActividad = navParams.get('actividad');
+    this.descripcionActividad = navParams.get('descripcionActividad');
+    this.codTarea = navParams.get('codTarea');
     this.estadoOt = navParams.get('estadoOt');
+    this.descTarea = navParams.get('descTarea');
     this.tipoOt = navParams.get('tipoOt');
     this.descOt = navParams.get('descOt');
+    this.depto = navParams.get('depto');
     this.myForm = this.createMyForm();
+    this.myForm.controls['actividad'].disable();
+    
+    
   }
 
   saveData() {
+    
   }
 
   ionViewDidLoad() {
@@ -73,13 +90,27 @@ export class OtcrearactividadesPage {
   ionViewWillEnter() {
     this.showLoading();
     var self = this;
-
-    this.dataService.soapinvokeR5ucodesTareas().then(function (valueR5CodesTareas) {
+    self.dataService.soapinvokeR5ucodesTareas().then(function (valueR5CodesTareas) {
       self.itemsTareas = valueR5CodesTareas;
+      
 
       self.dataService.soapinvokeR5ucodesMotivoRep().then(function (valueR5CodesMotivoRep) {
         self.itemsMotivoRep = valueR5CodesMotivoRep;
-        self.loading.dismiss();
+        self.valorFilterTarea = self.itemsTareas.findIndex(k => k.tareaItem == self.codTarea);
+        self.tarea = self.itemsTareas[self.valorFilterTarea];
+      
+            self.dataService.soapinvokeR5ucodesTecnicos(self.depto).then(function (valueR5CodesTecnicos) {
+              self.itemsTecnicos = valueR5CodesTecnicos;
+              self.valorFilter = self.itemsTecnicos.findIndex(k => k.tecnicoItem == self.userTecnico);
+              self.tecnicoplanificado = self.itemsTecnicos[self.valorFilter];
+            
+              self.loading.dismiss();
+
+            }, function (reason) {
+              self.showError("Error al ejecutar servicio R5UcodesTecnicos");
+
+            });
+       
 
       }, function (reason) {
         self.showError("Error al ejecutar servicio R5UcodesMotivoRep");
@@ -95,15 +126,14 @@ export class OtcrearactividadesPage {
 
   private createMyForm() {
     return this.formBuilder.group({
-      actividad: [this.numActividad, Validators.required],
+      actividad: [this.numActividad],
       horasestimadas: ['', Validators.required],
-      tarea: ['', Validators.required],
-      codigoactividad: [''],
+      tarea: [this.codTarea, Validators.required],
       tecnicoplanificado: [this.userTecnico, Validators.required],
       checkactividad: [false],
-      desctarea: [''],
+      desctarea: [this.descTarea],
       equipo: [this.equipo, Validators.required],
-      notas: [''],
+      notas: [this.descripcionActividad],
       motivorep: ['', Validators.required],
     });
 
@@ -131,9 +161,11 @@ export class OtcrearactividadesPage {
     return new Blob(byteArrays, { type: contentType });
   }
 
-  llenadoCampos() {
-    this.valorFilter = this.itemsTareas.findIndex(k => k.tareaItem == this.tarea);
-    this.myForm.get('desctarea').setValue(this.itemsTareas[this.valorFilter].tareaDesc);
+  llenadoCampos(event: {
+    component: IonicSelectableComponent,
+    value: any 
+  }) {
+    this.myForm.get('desctarea').setValue(event.value.tareaDesc);
 
   }
 
@@ -238,9 +270,9 @@ export class OtcrearactividadesPage {
 
                 }
                 self.checkActividadString = '+';
-                self.database.addActualizarActividad(self.valorOT, self.estadoOt, self.notasVacio, self.userTecnico, self.tarea, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt).then(function (value) {
+                self.database.addActualizarActividad(self.valorOT, self.estadoOt, self.notasVacio, self.tecnicoplanificado.tecnicoItem, self.tarea.tareaItem, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt,self.motivorep.motivoRep).then(function (value) {
 
-                  self.navCtrl.pop();
+                  self.navCtrl.popToRoot();
                   let alert = self.alertCtrl.create({
                     message: '<font size=3 color=black>La actividad se ha enviado exitosamente. Se ha enviado en modo offline, se sincronizará cuando se disponga de conexión</font>',
                     cssClass: 'buttonCss',
@@ -268,9 +300,9 @@ export class OtcrearactividadesPage {
 
                 }
                 self.checkActividadString = '+';
-                self.dataService.soapinvokeR5EventInterfacePpmUpdate(self.valorOT, self.estadoOt, self.notasVacio, self.userTecnico, self.tarea, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt).then(function (valueR5EventUpdate) {
+                self.dataService.soapinvokeR5EventInterfacePpmUpdate(self.valorOT, self.estadoOt, self.notasVacio, self.tecnicoplanificado.tecnicoItem, self.tarea.tareaItem, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt,self.motivorep.motivoRep).then(function (valueR5EventUpdate) {
 
-                  self.navCtrl.pop();
+                  self.navCtrl.popToRoot();
                   let alert = self.alertCtrl.create({
                     message: '<font size=3 color=black>La actividad se ha enviado exitosamente</font>',
                     cssClass: 'buttonCss',
@@ -319,7 +351,7 @@ export class OtcrearactividadesPage {
         }
         self.checkActividadString = '-';
 
-        self.database.addActualizarActividad(self.valorOT, self.estadoOt, self.notasVacio, self.userTecnico, self.tarea, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt).then(function (value) {
+        self.database.addActualizarActividad(self.valorOT, self.estadoOt, self.notasVacio, self.tecnicoplanificado.tecnicoItem, self.tarea.tareaItem, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt,self.motivorep.motivoRep).then(function (value) {
 
           self.navCtrl.pop();
           let alert = self.alertCtrl.create({
@@ -350,7 +382,7 @@ export class OtcrearactividadesPage {
 
         }
         self.checkActividadString = '-';
-        self.dataService.soapinvokeR5EventInterfacePpmUpdate(self.valorOT, self.estadoOt, self.notasVacio, self.userTecnico, self.tarea, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt).then(function (valueR5EventUpdate) {
+        self.dataService.soapinvokeR5EventInterfacePpmUpdate(self.valorOT, self.estadoOt, self.notasVacio, self.tecnicoplanificado.tecnicoItem, self.tarea.tareaItem, self.checkActividadString, self.numActividad, self.horasestimadas, self.equipo, self.tipoOt, self.descOt,self.motivorep.motivoRep).then(function (valueR5EventUpdate) {
 
           self.navCtrl.pop();
           let alert = self.alertCtrl.create({
@@ -383,7 +415,11 @@ export class OtcrearactividadesPage {
       actividad: this.numActividad,
       estadoOt: this.estadoOt,
       tipoOt: this.tipoOt,
-      descOt: this.descOt
+      descOt: this.descOt,
+      codTarea: this.codTarea,
+      descripcionActividad: this.descripcionActividad,
+      descTarea: this.descTarea,
+      depto: this.depto
 
     });
   }

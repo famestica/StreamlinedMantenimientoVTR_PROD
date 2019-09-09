@@ -26,7 +26,7 @@
   <ion-list>
     <ion-row>
       <button ion-item class="itemLista"
-        [color]="item.prioridad == 'baja'? 'green' : item.prioridad == 'media'? 'medium': item.prioridad == 'alta'? 'redalert' : 'redalert'"
+        [color]="item.prioridad == 'baja'? 'green' : item.prioridad == 'media'? 'medium': item.prioridad == 'alta'? 'redalert' : 'green'"
         *ngFor="let item of items" (click)="goToOtDetalle(item)">
         <div class="CustomColour">
           <ion-row>
@@ -93,7 +93,7 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 text-wrap
-              [class]="item.flagActIniciada == 'Pausada'? 'colorPausa' : item.flagActIniciada == 'Iniciada'? 'colorReanudar' : 'colorReanudar'">
+              [class]="item.flagActIniciada == 'Pausada' && item.prioridad == 'SI' ? 'colorBloqueo' : item.flagActIniciada == 'Pausada' && item.prioridad == ''? 'colorPausa' : item.flagActIniciada == 'Iniciada' && item.prioridad == 'SI'? 'colorBloqueo' : item.flagActIniciada == 'Iniciada' && item.prioridad == ''? 'colorReanudar' :'colorReanudar'">
             </ion-col>
           </ion-row>
         </div>

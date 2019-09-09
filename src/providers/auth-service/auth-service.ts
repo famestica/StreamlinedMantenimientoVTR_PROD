@@ -41,13 +41,14 @@ export class AuthService {
       } else {
         //Se realiza chequeo del servicio de acceso, si devuelve true, hay que asignar true a la variable access, de lo contrario, asignar false
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST', 'http://osbcorpib.vtr.cl:8000/loginUser?wsdl', true);
-        xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xmlhttp.open('POST', 'https://seam.vtr.cl/loginUser?wsdl', true);
+        xmlhttp.withCredentials = true;
+        xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "https://seam.vtr.cl");
+        xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
         xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
-        xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "...All Headers...");
+        xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin,Content-Type,Accept");
         xmlhttp.setRequestHeader('Content-Type', 'text/xml charset=UTF-8');
         xmlhttp.setRequestHeader("SOAPAction", "http://osbcorp.vtr.cl/LOG/EMP/loginUser/LOGEMPLoginUserPortType/LOGEMPLoginUserOperationRequest");
-
 
         var sr =
           `<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:head="http://osbcorp.vtr.cl/GLOBAL/EMP/HeaderRequest" xmlns:log="http://osbcorp.vtr.cl/LOG/EMP/loginUser">

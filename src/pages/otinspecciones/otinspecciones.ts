@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
 import { InspeccionesDataProvider } from '../../providers/inspecciones-data/inspecciones-data';
 import { OtcrearactividadesPage } from '../otcrearactividades/otcrearactividades';
+import { OtcrearactividadnuevaPage } from '../otcrearactividadnueva/otcrearactividadnueva';
 
 import { Network } from '@ionic-native/network';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -31,12 +32,21 @@ export class OtinspeccionesPage {
   tipoTrabajo: string;
   username: string;
   loading: Loading;
+  descOt: string;
+  estadoOt:string;
+  numActividad:string;
+  equipo:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InspeccionesDataProvider, private loadingCtrl: LoadingController, public alertCtrl: AlertController, public database: DatabaseProvider, private network: Network) {
     this.almacen = navParams.get('data');
-    this.tipoOT = navParams.get('tipoOT');
-    this.tipoTrabajo = navParams.get('tipoTrabajo');
     this.username = navParams.get('username');
+    this.equipo = navParams.get('equipo');
+    this.numActividad = navParams.get('actividad');
+    this.estadoOt = navParams.get('estadoOt');
+    this.tipoOT = navParams.get('tipoOt');
+    this.descOt = navParams.get('descOt');
+    this.tipoTrabajo = navParams.get('tipoTrabajo');
+    
   }
 
   showPrompt(descripcion, objeto, item) {
@@ -65,8 +75,14 @@ export class OtinspeccionesPage {
           cssClass: 'act-button',
           handler: data => {
 
-            this.navCtrl.push(OtcrearactividadesPage, {
-              data: this.almacen
+            this.navCtrl.push(OtcrearactividadnuevaPage, {
+              data: this.almacen,
+              equipo: this.equipo,
+              username: this.username,
+              actividad: this.numActividad,
+              estadoOt: this.estadoOt,
+              tipoOt: this.tipoOT,
+              descOt: this.descOt
 
             });
           }
@@ -90,7 +106,7 @@ export class OtinspeccionesPage {
             else {
               this.validateNumber = this.validateInspNumber(Number(data.valorinspeccion));
               if (this.validateNumber == false) {
-                prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 100</font>");
+                prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 1200</font>");
                 return false;
               } else {
 
@@ -120,6 +136,16 @@ export class OtinspeccionesPage {
                 }
                 else {
                   self.dataService.soapinvokeR5InsertarInspecciones(this.almacen, objeto, data.valorinspeccion, this.username, item.obTypeArr, item.obrTypeArr, item.pointArr, item.pointTypeArr, item.metodo, item.aspecto).then(function (R5InspeccionesValue) {
+                    let alert = self.alertCtrl.create({
+                      message: '<font size=3 color=black>Inspección ha sido enviada correctamente</font>',
+                      cssClass: 'buttonCss',
+                      buttons: [{
+                        text: 'Ok',
+                        cssClass: 'ok-button'
+                      }]
+                    });
+                    alert.setMode('md');
+                    alert.present();
                     return true;
 
                   }, function (reason) {
@@ -164,8 +190,14 @@ export class OtinspeccionesPage {
           cssClass: 'act-button',
           handler: data => {
 
-            this.navCtrl.push(OtcrearactividadesPage, {
-              data: this.almacen
+            this.navCtrl.push(OtcrearactividadnuevaPage, {
+              data: this.almacen,
+              equipo: this.equipo,
+              username: this.username,
+              actividad: this.numActividad,
+              estadoOt: this.estadoOt,
+              tipoOt: this.tipoOT,
+              descOt: this.descOt
 
             });
           }
@@ -191,7 +223,7 @@ export class OtinspeccionesPage {
               else {
                 this.validateNumber = this.validateInspNumber(Number(data.valorinspeccionreti));
                 if (this.validateNumber == false) {
-                  prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 100</font>");
+                  prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 1200</font>");
                   return false;
                 } else {
 
@@ -219,6 +251,16 @@ export class OtinspeccionesPage {
                   }
                   else {
                     self.dataService.soapinvokeR5InsertarInspeccionesPMPE01RETI(this.almacen, objeto, data.valorinspeccionreti, this.username).then(function (R5InspeccionesRetiValue) {
+                      let alert = self.alertCtrl.create({
+                        message: '<font size=3 color=black>Inspección ha sido enviada correctamente</font>',
+                        cssClass: 'buttonCss',
+                        buttons: [{
+                          text: 'Ok',
+                          cssClass: 'ok-button'
+                        }]
+                      });
+                      alert.setMode('md');
+                      alert.present();
                       return true;
 
                     }, function (reason) {
@@ -240,7 +282,7 @@ export class OtinspeccionesPage {
               else {
                 this.validateNumber = this.validateInspNumber(Number(data.valorinspeccioncoti));
                 if (this.validateNumber == false) {
-                  prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 100</font>");
+                  prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 1200</font>");
                   return false;
                 } else {
 
@@ -268,6 +310,16 @@ export class OtinspeccionesPage {
                   }
                   else {
                     self.dataService.soapinvokeR5InsertarInspeccionesPMPE01Coti(this.almacen, objeto, data.valorinspeccioncoti, this.username).then(function (R5InspeccionesCotiValue) {
+                      let alert = self.alertCtrl.create({
+                        message: '<font size=3 color=black>Inspección ha sido enviada correctamente</font>',
+                        cssClass: 'buttonCss',
+                        buttons: [{
+                          text: 'Ok',
+                          cssClass: 'ok-button'
+                        }]
+                      });
+                      alert.setMode('md');
+                      alert.present();
                       return true;
 
                     }, function (reason) {
@@ -291,7 +343,7 @@ export class OtinspeccionesPage {
                 this.validateNumberCoti = this.validateInspNumber(Number(data.valorinspeccioncoti));
                 this.validateNumberReti = this.validateInspNumber(Number(data.valorinspeccionreti));
                 if (this.validateNumberCoti == false || this.validateNumberReti == false) {
-                  prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 100</font>");
+                  prompt.setMessage("<font size=2>Rango numérico debe ser de 0 a 1200</font>");
                   return false;
                 } else {
 
@@ -326,6 +378,16 @@ export class OtinspeccionesPage {
                   else {
                     self.dataService.soapinvokeR5InsertarInspeccionesPMPE01Coti(self.almacen, objeto, data.valorinspeccioncoti, self.username).then(function (R5InspeccionesCotiValue) {
                       self.dataService.soapinvokeR5InsertarInspeccionesPMPE01RETI(self.almacen, objeto, data.valorinspeccionreti, self.username).then(function (R5InspeccionesRetiValue) {
+                        let alert = self.alertCtrl.create({
+                          message: '<font size=3 color=black>Inspección ha sido enviada correctamente</font>',
+                          cssClass: 'buttonCss',
+                          buttons: [{
+                            text: 'Ok',
+                            cssClass: 'ok-button'
+                          }]
+                        });
+                        alert.setMode('md');
+                        alert.present();
                         return true;
 
                       }, function (reason) {
@@ -391,7 +453,7 @@ export class OtinspeccionesPage {
   }
 
   validateInspNumber(data) {
-    if (parseFloat(data) >= 0.00 && parseFloat(data) <= 100.00) {
+    if (parseFloat(data) >= 0.00 && parseFloat(data) <= 1200.00) {
       return true;
     }
     else {

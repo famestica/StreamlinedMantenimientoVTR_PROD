@@ -18,11 +18,22 @@
     <ion-grid>
       <ion-item text-wrap no-lines>
         <ion-label color="dark" stacked>Objeto Original:<span danger>*</span></ion-label>
-        <ion-select text-wrap interface="popup" formControlName="itemAntiguo" [(ngModel)]="itemAnt"
-          class="busquedaestado">
-          <ion-option text-wrap *ngFor="let itemAntiguo of itemsAntiguos" value="{{itemAntiguo.equipoantiguo}}">
-            {{itemAntiguo.compequipoantiguo}}</ion-option>
-        </ion-select>
+        <ionic-selectable
+                item-content 
+                [(ngModel)]="itemAnt"
+                [items]="itemsAntiguos"
+                class="busquedaestado"
+                itemValueField="equipoantiguo"
+                itemTextField="compequipoantiguo"
+                formControlName="itemAntiguo"
+                [canSearch]="true">
+                <ng-template ionicSelectableItemTemplate let-port="item"
+                let-isPortSelected="isItemSelected">
+              <ion-label text-wrap>
+                {{port.compequipoantiguo}}
+              </ion-label>
+            </ng-template>
+          </ionic-selectable>
       </ion-item>
       <ion-item no-lines>
         <ion-label color="dark" stacked>Estado Equipo:<span danger>*</span></ion-label>
@@ -33,28 +44,49 @@
       </ion-item>
       <ion-item no-lines>
         <ion-label color="dark" stacked>Objeto Nuevo:<span danger>*</span></ion-label>
-        <ion-select interface="popup" formControlName="itemNuevo" [(ngModel)]="itemNew" class="busquedaestado">
-          <ion-option *ngFor="let itemNuevo of itemsNuevos" value="{{itemNuevo.equiponuevo}}">
-            {{itemNuevo.compequiponuevo}}</ion-option>
-        </ion-select>
+        <ionic-selectable
+                item-content 
+                [(ngModel)]="itemNew"
+                [items]="itemsNuevos"
+                class="busquedaestado"
+                itemValueField="equiponuevo"
+                itemTextField="compequiponuevo"
+                formControlName="itemNuevo"
+                [canSearch]="true">
+                <ng-template ionicSelectableItemTemplate let-port="item"
+                let-isPortSelected="isItemSelected">
+              <ion-label text-wrap>
+                {{port.compequiponuevo}}
+              </ion-label>
+            </ng-template>
+          </ionic-selectable>
       </ion-item>
-      <ion-col col-12>
+      <ion-row>
+      <ion-col col-11>
         <ion-item no-lines>
           <ion-label color="dark" stacked>Descripcion:<span danger>*</span></ion-label>
           <ion-input text-center formControlName="descripcionEquipo" [(ngModel)]="descripcionEquipo"></ion-input>
         </ion-item>
       </ion-col>
+      <ion-col col-1>
+        <button type="button" (click)="scan()" class="codigoqr"><img src="assets/imgs/qr.png"></button>
+    </ion-col>
+  </ion-row>
       <ion-row>
-        <div padding>
+          <ion-col col-3>
+            </ion-col>
+        <ion-col col-4>
           <button class="botonguardar" ion-button color="dark" (click)="enviarRotacion()" [disabled]="!myForm.valid"
-            rounded>Enviar Rotación y <br />Salir</button>
-        </div>
+          rounded>Enviar Rotación y <br />Salir</button>
+        </ion-col>
       </ion-row>
       <ion-row>
-        <div padding>
-          <button class="botonguardarotro" ion-button color="dark" (click)="enviarRotacionAgregarOtra()"
+          <ion-col col-3>
+            </ion-col>
+        <ion-col col-4>
+          <button class="botonguardar" ion-button color="dark" (click)="enviarRotacionAgregarOtra()"
             [disabled]="!myForm.valid" rounded>Enviar Rotación y <br />Rotar Otro AF</button>
-        </div>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </form>
