@@ -52,8 +52,15 @@ export class OtagregarcomentarioPage {
     return this.platform.is('ios');
   }
 
-  changed() {
+  changed(event: any) {
     this.leftCharacters = 200 - this.comentario.length;
+    let newValue = event.target.value;
+
+    let regExp = new RegExp('^[A-Za-z0-9? :,\-]+$');
+
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+    }
   }
 
   stopListening() {

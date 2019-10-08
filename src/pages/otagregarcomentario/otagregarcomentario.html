@@ -19,8 +19,8 @@
       <ion-col col-12>
         <ion-item no-lines>
           <ion-label color="dark" stacked>Comentario:</ion-label>
-          <ion-textarea formControlName="comentario" [(ngModel)]="comentario" (keypress)="changed()"
-            (keyup)="changed()"></ion-textarea>
+          <ion-textarea formControlName="comentario" [(ngModel)]="comentario" (keypress)="changed($event)"
+            (keyup)="changed($event)"></ion-textarea>
         </ion-item>
       </ion-col>
     </ion-row>
